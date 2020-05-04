@@ -5,9 +5,9 @@ const TradeHistoryRow = ({tradeHistory}) => {
   const formatTradeType = (tradeType) => {
     const tradeTypes = {
       'equity': '現物取引',
-      'margin_open': '信用新規',
-      'margin_close': '信用返済',
-      'margin_swap': '現引/現渡',
+      'margin_open': '信用新規(制度)',
+      'margin_close': '信用返済(制度)',
+      'margin_swap': '現引/現渡(制度)',
       'withdraw': '出金',
       'deposit': '入金',
       'shipment': '出庫',
@@ -17,7 +17,10 @@ const TradeHistoryRow = ({tradeHistory}) => {
       'capital_gain_refund': '譲渡益税還付',
       'fund': '投資信託',
       'dividend_adjustment': '配当落調整額',
-      'other': 'その他'
+      'other': 'その他',
+      'general_margin_open':'信用新規(一般)',
+      'general_margin_close':'信用返済(一般)',
+      'general_margin_swap':'現引/現渡(一般)'
     };
 
     return tradeTypes[tradeType];
