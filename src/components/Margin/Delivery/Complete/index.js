@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 class MarginDeliveryComplete extends Component {
   render() {
-    const { marginOrder, stockDetail, buttonType } = this.props
+    const { marginOrder, stockDetail, buttonType, marginPositions } = this.props
     if (stockDetail == null || marginOrder == null || buttonType == null) {
       this.props.history.push('/account/margin')
       return null
@@ -20,7 +20,7 @@ class MarginDeliveryComplete extends Component {
         </div>
         <div className="u-mt20p">
           <div className="p-section_lead">
-            <p>ご取引を受け付けいたしました。</p>
+            <p>ご取引を受け付けいたしました。</p> 
           </div>
         </div>
         <div className="u-mt20p">
@@ -34,7 +34,7 @@ class MarginDeliveryComplete extends Component {
                   </tr>
                   <tr>
                     <th>取引</th>
-                    <td>{transaction}</td>
+                    <td>{marginPositions[0].margin_trade_type === 'system' ? `${transaction}制度` :`${transaction}一般`}</td>
                   </tr>
                   <tr>
                     <th>取引株数</th>

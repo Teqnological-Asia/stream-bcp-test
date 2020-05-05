@@ -4,7 +4,7 @@ import { transactionByButtonType } from '../../common';
 import { formatCurrency } from '../../../../utils';
 
 class MarginOrderConfirm extends Component {
-  constructor(props) {
+  constructor(props) { 
     super(props)
     this.handleConfirm = this.handleConfirm.bind(this)
   }
@@ -23,7 +23,8 @@ class MarginOrderConfirm extends Component {
   }
 
   render() {
-    const { marginOrderSendParams, stockDetail, buttonType } = this.props
+    console.log(this.props,'props') 
+    const { marginOrderSendParams, stockDetail, buttonType, marginPositions} = this.props
 
     if (marginOrderSendParams == null || stockDetail == null || buttonType == null) {
       return null
@@ -59,7 +60,7 @@ class MarginOrderConfirm extends Component {
                   </tr>
                   <tr>
                     <th>取引</th>
-                    <td>{transaction}</td>
+                    <td>{marginPositions[0].margin_trade_type === 'system' ? `${transaction}制度` :`${transaction}一般`}</td>
                   </tr>
                   <tr>
                     <th>取引株数</th>

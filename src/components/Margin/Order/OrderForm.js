@@ -158,12 +158,15 @@ class OrderForm extends Component {
   )
 
   render() {
-    const { stockDetail, physicalDetail, buttonType } = this.props;
+    const { stockDetail, physicalDetail, buttonType, marginPositions } = this.props;
     const { quantity, orderType, price } = this.state;
 
     if (stockDetail === null || physicalDetail === null) return null;
     const isMarketType = orderType === 'Market';
-    const transaction = transactionByButtonType(buttonType)
+
+    //Set transaction after margin trade type
+    const transactionByButton = transactionByButtonType(buttonType)
+    const transaction = marginPositions[0].margin_trade_type === 'system' ? `${transactionByButton}制度` :`${transactionByButton}一般`
 
     return (
       <form onSubmit={(e) => this.handleSubmit(e)}>

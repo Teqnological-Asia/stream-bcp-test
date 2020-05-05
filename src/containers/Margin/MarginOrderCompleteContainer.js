@@ -14,6 +14,7 @@ const mapStateToProps = (state) => ({
   stockDetail: state.physicalReducer.stockDetail,
   buttonType: state.marginReducer.buttonType,
   marginOrderSendParams: state.marginReducer.marginOrderSendParams,
+  marginPositions: state.marginReducer.marginPositions
 })
 
 export default connect(

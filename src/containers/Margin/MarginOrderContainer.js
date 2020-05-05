@@ -16,6 +16,7 @@ const mapStateToProps = (state) => ({
   stockDetail: state.physicalReducer.stockDetail,
   buttonType: state.marginReducer.buttonType,
   orderFormValues: state.marginReducer.marginOrderForm,
+  marginPositions: state.marginReducer.marginPositions
 })
 
 const mapDispatchToProps = (dispatch) => {

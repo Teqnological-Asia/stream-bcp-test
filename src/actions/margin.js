@@ -155,6 +155,7 @@ export const newMarginSwap = (stockId, side, accountType = '1') => {
     const sumQuantity = positions.reduce(sumMarginReducer, 0)
     const close_contracts = mapCloseContracts(positions)
     const redirectUrl = side === 'sell' ? 'receipt' : 'delivery'
+    const marginTradeType = positions[0].margin_trade_type
     const body = {
       symbol: stockId,
       exchange: 'T',
@@ -162,7 +163,8 @@ export const newMarginSwap = (stockId, side, accountType = '1') => {
       close_ordering: '3',
       close_contracts: close_contracts,
       side: side === 'sell' ? 'buy' : 'sell',
-      quantity: sumQuantity.toString()
+      quantity: sumQuantity.toString(),
+      margin_trade_type: marginTradeType === 'system' ? "1" : "2",
     }
     const request = axios.post(url, body, { headers: getAuthHeader() });
     return request.then((response) => {
@@ -186,6 +188,7 @@ export const sendMarginSwap = (stockId, side) => {
     const sumQuantity = positions.reduce(sumMarginReducer, 0)
     const close_contracts = mapCloseContracts(positions)
     const redirectUrl = side === 'sell' ? 'receipt' : 'delivery'
+    const marginTradeType = positions[0].margin_trade_type
     const body = {
       system_order_id: marginOrder.system_order_id,
       wb5_confirm_date: marginOrder.wb5_confirm_date,
@@ -195,7 +198,9 @@ export const sendMarginSwap = (stockId, side) => {
       close_ordering: '3',
       close_contracts: close_contracts,
       side: side === 'sell' ? 'buy' : 'sell',
-      quantity: sumQuantity.toString()
+      quantity: sumQuantity.toString(),
+      margin_trade_type: marginTradeType === 'system' ? "1" : "2",
+      wb5_confirmed_date: marginOrder.wb5_confirmed_date
     }
     const request = axios.post(url, body, { headers: getAuthHeader() });
     return request.then((response) => {
@@ -217,6 +222,7 @@ export const newMarginOrder = (id, side, params) => {
     const url = `${process.env.REACT_APP_ORDER_API_HOST}/margin_orders/close`
     const { positions } = getState().marginReducer.stock
     const close_contracts = mapCloseContracts(positions)
+    const marginTradeType = positions[0].margin_trade_type
     const orderNewParams = {
       symbol: id,
       exchange: 'T',
@@ -228,7 +234,8 @@ export const newMarginOrder = (id, side, params) => {
       execution_type: 'none',
       quantity: String(params.quantity),
       expiration_type: 'day',
-      order_condition_type: 'none'
+      order_condition_type: 'none',
+      margin_trade_type: marginTradeType === 'system' ? "1" : "2"
     };
 
     if (orderNewParams['order_type'] === 'Limit') {
