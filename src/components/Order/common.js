@@ -4,7 +4,10 @@ export const tradeTypes = {
   'equity': '現物',
   'margin_open': '信用新規',
   'margin_close': '信用返済',
-  'margin_swap': '信用現'
+  'margin_swap': '信用現',
+  'general_margin_open':'信用新規',
+  'general_margin_close':'信用返済',
+  'general_margin_swap':'信用現',
 };
 
 export const tradeTypeCancelPath = {
@@ -15,7 +18,7 @@ export const tradeTypeCancelPath = {
 }
 
 export const suffixByTradeType = (side, trade_type = '') => {
-  if (trade_type === 'margin_swap') {
+  if (trade_type === 'margin_swap' || trade_type === 'general_margin_swap') {
     return side === "sell" ? '引' : '渡'
   } else {
     return side === "sell" ? '売' : '買'
@@ -47,7 +50,11 @@ export const reportTypes = ['fill', 'partial_fill'];
 export const formatTradeType = (order) => {
   const tradeType = tradeTypes[order.trade_type];
   const suffix = suffixByTradeType(order.side, order.trade_type)
-
+  if ((/general_margin_open|general_margin_close|general_margin_swap/).test(order.trade_type)) {
+    return `${tradeType}${suffix}(一般)`;  
+  } else if ((/margin_open|margin_close|margin_swap/).test(order.trade_type)) {
+    return `${tradeType}${suffix}(制度)`;  
+  }
   return `${tradeType}${suffix}`;
 }
 
