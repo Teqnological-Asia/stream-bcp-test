@@ -72,6 +72,13 @@ const configMenu = () => {
           href: '/account/trade/lendinghistory',
           subItems: [],
           groupId: 1
+        },
+        {
+          id:15,
+          name: '信用保証金推移',
+          href: '/account/trade/transition-reference',
+          subItems: [],
+          groupId: 1
         }
       ]
     },
@@ -237,7 +244,8 @@ const removeRoute = (sidebarList, mainItemPos, matchRoute) => {
 const checkMarginCondition = sidebarList => {
   const marginAccountStatus = sessionStorage.getItem("marginAccountStatus");
   if (marginAccountStatus !== "2" && marginAccountStatus !== "3") {
-    return removeRoute(sidebarList, sidebarList.length - 1, "/account/margin");
+    const temp = removeRoute(sidebarList, sidebarList.length - 1, "/account/margin");
+    return removeRoute(temp, 1, "/account/trade/transition-reference");
   }
   return sidebarList;
 };

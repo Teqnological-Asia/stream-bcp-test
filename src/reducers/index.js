@@ -23,7 +23,7 @@ import marginReducer from './margin';
 import loadingReducer from './loading';
 import tradeLendingBalanceReducer from './tradeLendingBalance'
 import tradeLendingHistoryReducer from './tradeLendingHistory'
-
+import tradeTransitionReferenceReducer from './tradeTransitionReference'
 export default combineReducers({
   routing: routerReducer,
   authReducer,
@@ -49,4 +49,5 @@ export default combineReducers({
   loadingReducer,
   tradeLendingBalanceReducer,
   tradeLendingHistoryReducer,
+  tradeTransitionReferenceReducer,
 });
