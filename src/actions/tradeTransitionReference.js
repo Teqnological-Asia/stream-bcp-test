@@ -1,5 +1,4 @@
 import axios from 'axios';
-import qs from 'qs';
 import { LOAD_TRADE_TRANSITION_REFERENCE_SUCCESS } from '../constants/tradeTransitionReference';
 import { getAuthHeader } from './auth';
 import { setLoading } from '../actions/loading';
@@ -14,8 +13,9 @@ export const loadTradeTransitionReferenceSuccess = (tradeTransitionReference) =>
 export const loadTradeTransitionReferenceRequest = () => {
   return dispatch => {
     dispatch(setLoading(true))
+    const url = `${process.env.REACT_APP_BALANCE_API_HOST}/tradingPowerTransitionReference`
     const request = axios
-                      .get(`${process.env.REACT_APP_BALANCE_API_HOST}/tradingPowerTransitionReference`, {
+                      .get(url, {
                         headers: getAuthHeader()
                       });
 
