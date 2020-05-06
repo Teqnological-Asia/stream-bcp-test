@@ -23,14 +23,13 @@ class MarginOrderConfirm extends Component {
   }
 
   render() {
-    console.log(this.props,'props') 
     const { marginOrderSendParams, stockDetail, buttonType, marginPositions} = this.props
 
     if (marginOrderSendParams == null || stockDetail == null || buttonType == null) {
       return null
     }
 
-    const transaction = transactionByButtonType(buttonType)
+    const transaction = transactionByButtonType(buttonType, marginPositions[0].margin_trade_type)
     const formattedPrice = marginOrderSendParams.order_type === 'Limit' ? `指値${formatCurrency(marginOrderSendParams.price)}円` : '成行';
 
     return (
@@ -60,7 +59,7 @@ class MarginOrderConfirm extends Component {
                   </tr>
                   <tr>
                     <th>取引</th>
-                    <td>{marginPositions[0].margin_trade_type === 'system' ? `${transaction}制度` :`${transaction}一般`}</td>
+                    <td>{transaction}</td>
                   </tr>
                   <tr>
                     <th>取引株数</th>

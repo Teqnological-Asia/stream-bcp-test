@@ -30,15 +30,23 @@ export const quantity = position => {
   return formatCurrency(position.quantity, 0).toString() + orderingQuantity
 }
 
-export const transactionByButtonType = buttonType => {
+export const transactionByButtonType = (buttonType, tradeType) => {
   const { ORDER_BUY, ORDER_SELL, SWAP_BUY, SWAP_SELL } = BUTTON_TYPE
+  var transaction = ''
   switch (buttonType) {
-    case ORDER_BUY: return '信用返済売'
-    case ORDER_SELL: return '信用返済買'
-    case SWAP_BUY: return '現引'
-    case SWAP_SELL: return '現渡'
-    default: return null
+    case ORDER_BUY:
+      transaction = '信用返済売'; break
+    case ORDER_SELL:
+      transaction = '信用返済買'; break
+    case SWAP_BUY:
+      transaction = '現引'; break
+    case SWAP_SELL:
+      transaction = '現渡'; break
+    default: null; break
   }
+  if(!tradeType) return transaction
+  const transactionWithTradeType = tradeType === 'system' ? `${transaction}制度` : `${transaction}一般`
+  return transactionWithTradeType
 }
 
 export const entryPrice = (position) => {

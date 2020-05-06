@@ -165,8 +165,8 @@ class OrderForm extends Component {
     const isMarketType = orderType === 'Market';
 
     //Set transaction after margin trade type
-    const transactionByButton = transactionByButtonType(buttonType)
-    const transaction = marginPositions[0].margin_trade_type === 'system' ? `${transactionByButton}制度` :`${transactionByButton}一般`
+    const transaction = transactionByButtonType(buttonType, marginPositions[0].margin_trade_type)
+
 
     return (
       <form onSubmit={(e) => this.handleSubmit(e)}>

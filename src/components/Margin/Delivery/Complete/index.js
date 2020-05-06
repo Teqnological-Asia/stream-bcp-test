@@ -9,7 +9,9 @@ class MarginDeliveryComplete extends Component {
       this.props.history.push('/account/margin')
       return null
     }
-    const transaction = transactionByButtonType(buttonType)
+
+    const transaction = transactionByButtonType(buttonType, marginPositions[0].margin_trade_type)
+
 
     return (
       <div className="l-contents_body_inner">
@@ -34,7 +36,7 @@ class MarginDeliveryComplete extends Component {
                   </tr>
                   <tr>
                     <th>取引</th>
-                    <td>{marginPositions[0].margin_trade_type === 'system' ? `${transaction}制度` :`${transaction}一般`}</td>
+                    <td>{transaction}</td>
                   </tr>
                   <tr>
                     <th>取引株数</th>

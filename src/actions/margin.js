@@ -164,7 +164,7 @@ export const newMarginSwap = (stockId, side, accountType = '1') => {
       close_contracts: close_contracts,
       side: side === 'sell' ? 'buy' : 'sell',
       quantity: sumQuantity.toString(),
-      margin_trade_type: marginTradeType === 'system' ? "1" : "2",
+      margin_trade_type: marginTradeType === 'system' ? '1' : '2',
     }
     const request = axios.post(url, body, { headers: getAuthHeader() });
     return request.then((response) => {
@@ -199,7 +199,7 @@ export const sendMarginSwap = (stockId, side) => {
       close_contracts: close_contracts,
       side: side === 'sell' ? 'buy' : 'sell',
       quantity: sumQuantity.toString(),
-      margin_trade_type: marginTradeType === 'system' ? "1" : "2",
+      margin_trade_type: marginTradeType === 'system' ? '1' : '2',
       wb5_confirmed_date: marginOrder.wb5_confirmed_date
     }
     const request = axios.post(url, body, { headers: getAuthHeader() });
