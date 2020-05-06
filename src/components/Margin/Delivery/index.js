@@ -15,7 +15,6 @@ class MarginDelivery extends Component {
 
   render() {
     const { marginOrder, stockDetail, buttonType, marginPositions } = this.props
-    console.log(this.props)
     if (stockDetail == null || marginOrder == null || buttonType == null) {
       this.props.history.push('/account/margin')
       return null
