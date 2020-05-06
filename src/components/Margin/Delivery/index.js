@@ -29,7 +29,7 @@ class MarginDelivery extends Component {
         </div>
         <div className="u-mt20p">
           <div className="p-section_lead">
-            <p>内容をご確認いただき「発注する」を押すとご注文が確定されます。1</p>
+            <p>内容をご確認いただき「発注する」を押すとご注文が確定されます。</p>
           </div>
         </div>
         <div className="u-mt20p">
