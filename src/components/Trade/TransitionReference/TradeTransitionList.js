@@ -21,7 +21,7 @@ const TradeTransitionList = ({tradeTransitionReference}) => {
           {hasElement && transformTransitions(tradeTransitionReference).map((row) => (
             <tr>
               {row.map((col) => (
-                <td>{col}</td>
+                <td className={col < 0 ? 'u-minus' : ''}>{col}</td>
               ))}
             </tr>
           ))}

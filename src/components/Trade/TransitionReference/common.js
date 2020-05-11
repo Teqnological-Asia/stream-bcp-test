@@ -1,5 +1,5 @@
 import moment from "moment";
-
+import {roundedPercentage, replaceDot2Comma} from '../../../utils'
 export const getHeaderTable = (transitions) => {
   let dates = ["日付"];
   transitions.map((transition) =>
@@ -26,8 +26,10 @@ export const transformTransitions = (transitions) => {
     let marginRates = ["保証金預託率"];
 
     transitions.map((transition) => {
+      const subCollateral = transition.collateralCash - transition.collateral;
+      const modifiedMarginRate = replaceDot2Comma(roundedPercentage(transition.marginRate))
       collateralCashes.push(transition.collateralCash);
-      collaterals.push("TODO");//calculate
+      collaterals.push(subCollateral);
       marginTradePositionPLs.push(transition.marginTradePositionPL);
       marginTradePositionExpenses.push(transition.marginTradePositionExpense);
       marginTradeUnsettledLosses.push(transition.marginTradeUnsettledLoss);
@@ -37,7 +39,7 @@ export const transformTransitions = (transitions) => {
       cashMarginRequireds.push(transition.cashMarginRequired);
       withdrawables.push(transition.withdrawable);
       marginTradePositionAmounts.push(transition.marginTradePositionAmount);
-      marginRates.push("TODO");//calculate
+      marginRates.push(`${modifiedMarginRate}%`);
       return 0;
     });
     result.push(

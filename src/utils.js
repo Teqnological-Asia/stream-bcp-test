@@ -91,3 +91,9 @@ export const removeArrSB = arr => {
   return {...arr[0]}
 }
 
+export const roundedPercentage = (num) => {
+  return parseFloat(num).toFixed(2)
+}
+export const replaceDot2Comma = (text) => {
+  return text.replace(/\./ ,',')
+}
