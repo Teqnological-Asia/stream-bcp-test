@@ -1,5 +1,5 @@
 import moment from "moment";
-import {roundedPercentage, replaceDot2Comma} from '../../../utils'
+import {roundedPercentage, addComma} from '../../../utils'
 export const getHeaderTable = (transitions) => {
   let dates = ["日付"];
   transitions.map((transition) =>
@@ -26,19 +26,19 @@ export const transformTransitions = (transitions) => {
     let marginRates = ["保証金預託率"];
 
     transitions.map((transition) => {
-      const subCollateral = transition.collateralCash - transition.collateral;
-      const modifiedMarginRate = replaceDot2Comma(roundedPercentage(transition.marginRate))
-      collateralCashes.push(transition.collateralCash);
+      const subCollateral = addComma((transition.collateralCash - transition.collateral).toString());
+      const modifiedMarginRate = addComma(roundedPercentage(transition.marginRate))
+      collateralCashes.push(addComma(transition.collateralCash));
       collaterals.push(subCollateral);
-      marginTradePositionPLs.push(transition.marginTradePositionPL);
-      marginTradePositionExpenses.push(transition.marginTradePositionExpense);
-      marginTradeUnsettledLosses.push(transition.marginTradeUnsettledLoss);
-      marginTradeUnsettledProfits.push(transition.marginTradeUnsettledProfit);
-      marginReceiveds.push(transition.marginReceived);
-      marginRequireds.push(transition.marginRequired);
-      cashMarginRequireds.push(transition.cashMarginRequired);
-      withdrawables.push(transition.withdrawable);
-      marginTradePositionAmounts.push(transition.marginTradePositionAmount);
+      marginTradePositionPLs.push(addComma(transition.marginTradePositionPL));
+      marginTradePositionExpenses.push(addComma(transition.marginTradePositionExpense));
+      marginTradeUnsettledLosses.push(addComma(transition.marginTradeUnsettledLoss));
+      marginTradeUnsettledProfits.push(addComma(transition.marginTradeUnsettledProfit));
+      marginReceiveds.push(addComma(transition.marginReceived));
+      marginRequireds.push(addComma(transition.marginRequired));
+      cashMarginRequireds.push(addComma(transition.cashMarginRequired));
+      withdrawables.push(addComma(transition.withdrawable));
+      marginTradePositionAmounts.push(addComma(transition.marginTradePositionAmount));
       marginRates.push(`${modifiedMarginRate}%`);
       return 0;
     });
