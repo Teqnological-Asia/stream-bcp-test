@@ -24,7 +24,7 @@ export const suffixByTradeType = (side, trade_type = '') => {
     return side === "sell" ? '売' : '買'
   }
 }
-export const suffixBySide = (trade_type) => {
+export const suffixForMarginType = (trade_type) => {
   if ((/general_margin/).test(trade_type)) {
     return "(一般)";  
   } else if ((/margin_open|margin_close|margin_swap/).test(trade_type)) {
@@ -55,7 +55,7 @@ export const reportTypes = ['fill', 'partial_fill'];
 
 export const formatTradeType = (order) => {
   const tradeType = tradeTypes[order.trade_type];
-  const suffix = suffixByTradeType(order.side, order.trade_type) + suffixBySide(order.trade_type)
+  const suffix = suffixByTradeType(order.side, order.trade_type) + suffixForMarginType(order.trade_type)
   return `${tradeType}${suffix}`;
 }
 
