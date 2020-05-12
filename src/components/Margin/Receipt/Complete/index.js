@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 class MarginReceiptComplete extends Component {
   render() {
-    const { marginOrder, stockDetail, buttonType } = this.props
+    const { marginOrder, stockDetail, buttonType, marginPositions } = this.props
     if (stockDetail == null || marginOrder == null || buttonType == null) {
       this.props.history.push('/account/margin')
       return null
     }
-    const transaction = transactionByButtonType(buttonType)
+    const transaction = transactionByButtonType(buttonType, marginPositions[0].margin_trade_type)
 
     return (
       <div className="l-contents_body_inner">

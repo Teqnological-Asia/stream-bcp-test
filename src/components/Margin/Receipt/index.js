@@ -13,12 +13,12 @@ class MarginReceipt extends Component {
     this.props.sendMarginSwap(this.props.match.params.code, side)
   }
   render() {
-    const { marginOrder, stockDetail, buttonType } = this.props
+    const { marginOrder, stockDetail, buttonType, marginPositions } = this.props
     if (stockDetail == null || marginOrder == null || buttonType == null) {
       this.props.history.push('/account/margin')
       return null
     }
-    const transaction = transactionByButtonType(buttonType)
+    const transaction = transactionByButtonType(buttonType, marginPositions[0].margin_trade_type)
     return (
       <div className="l-contents_body_inner">
         <div className="u-mt40p">

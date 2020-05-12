@@ -16,8 +16,11 @@ class MarginOrder extends Component {
     this.props.initMarginOrderForm()
   }
   render() {
-    const { buttonType } = this.props
-    const transaction = transactionByButtonType(buttonType)
+    const { buttonType, marginPositions } = this.props
+    let transaction = transactionByButtonType(buttonType)
+    if( marginPositions[0] ){
+      transaction = transactionByButtonType(buttonType, marginPositions[0].margin_trade_type)
+    }
     return (
       <div className="l-contents_body_inner">
         <div className="u-mt40p">

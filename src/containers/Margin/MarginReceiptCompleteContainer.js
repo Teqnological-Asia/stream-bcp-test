@@ -13,7 +13,8 @@ class MarginReceiptCompleteContainer extends Component {
 const mapStateToProps = (state) => ({
   marginOrder: state.marginReducer.marginOrder,
   stockDetail: state.physicalReducer.stockDetail,
-  buttonType: state.marginReducer.buttonType
+  buttonType: state.marginReducer.buttonType,
+  marginPositions: state.marginReducer.marginPositions
 })
 
 export default connect(
