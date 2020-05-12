@@ -90,10 +90,3 @@ export const sumMarginReducer = (accumulator, currentPosition) => accumulator + 
 export const removeArrSB = arr => {
   return {...arr[0]}
 }
-
-export const roundedPercentage = (num) => {
-  return parseFloat(num).toFixed(2)
-}
-export const addComma = (num) => {
-  return num.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}

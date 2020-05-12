@@ -1,5 +1,5 @@
 import moment from "moment";
-import {roundedPercentage, addComma} from '../../../utils'
+import {formatCurrency} from '../../../utils'
 export const getHeaderTable = (transitions) => {
   let dates = ["日付"];
   transitions.map((transition) =>
@@ -25,22 +25,21 @@ export const transformTransitions = (transitions) => {
     let marginTradePositionAmounts = ["建玉代金"];
     let marginRates = ["保証金預託率"];
 
-    transitions.map((transition) => {
-      const subCollateral = addComma((transition.collateralCash - transition.collateral).toString());
-      const modifiedMarginRate = addComma(roundedPercentage(transition.marginRate))
-      collateralCashes.push(addComma(transition.collateralCash));
+    transitions.forEach((transition) => {
+      const subCollateral = formatCurrency((transition.collateralCash - transition.collateral));
+      const modifiedMarginRate = formatCurrency(transition.marginRate, 2)
+      collateralCashes.push(formatCurrency(transition.collateralCash));
       collaterals.push(subCollateral);
-      marginTradePositionPLs.push(addComma(transition.marginTradePositionPL));
-      marginTradePositionExpenses.push(addComma(transition.marginTradePositionExpense));
-      marginTradeUnsettledLosses.push(addComma(transition.marginTradeUnsettledLoss));
-      marginTradeUnsettledProfits.push(addComma(transition.marginTradeUnsettledProfit));
-      marginReceiveds.push(addComma(transition.marginReceived));
-      marginRequireds.push(addComma(transition.marginRequired));
-      cashMarginRequireds.push(addComma(transition.cashMarginRequired));
-      withdrawables.push(addComma(transition.withdrawable));
-      marginTradePositionAmounts.push(addComma(transition.marginTradePositionAmount));
+      marginTradePositionPLs.push(formatCurrency(transition.marginTradePositionPL));
+      marginTradePositionExpenses.push(formatCurrency(transition.marginTradePositionExpense));
+      marginTradeUnsettledLosses.push(formatCurrency(transition.marginTradeUnsettledLoss));
+      marginTradeUnsettledProfits.push(formatCurrency(transition.marginTradeUnsettledProfit));
+      marginReceiveds.push(formatCurrency(transition.marginReceived));
+      marginRequireds.push(formatCurrency(transition.marginRequired));
+      cashMarginRequireds.push(formatCurrency(transition.cashMarginRequired));
+      withdrawables.push(formatCurrency(transition.withdrawable));
+      marginTradePositionAmounts.push(formatCurrency(transition.marginTradePositionAmount));
       marginRates.push(`${modifiedMarginRate}%`);
-      return 0;
     });
     result.push(
       collateralCashes,
