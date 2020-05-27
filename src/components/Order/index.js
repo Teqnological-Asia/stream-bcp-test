@@ -21,11 +21,13 @@ class Order extends Component {
     this.loadOrders();
   }
 
-  loadOrders = (page=1) => {
-    let params = {page: page, today: 1};
-    this.props.loadOrdersRequest(params);
+  loadOrders = (page=1, isWorking=false) => {
+    let params = {page: page};
+    this.props.loadOrdersRequest(params, isWorking);
   }
-
+  filterOrders = (isWorking = false) => {
+    this.loadOrders(1, isWorking)
+  }
   handlePageChange = page => {
     this.loadOrders(page);
   }
@@ -59,6 +61,10 @@ class Order extends Component {
               (<a className="icon-arrows-ccw cursor" onClick={this.reloadData}>更新</a>）
             </div>
           </div>
+        </div>
+        <div className="u-mt20p">
+          <button className="c-button c-button_small" onClick={() => this.filterOrders(true)}>未約定注文</button>
+          <button className="c-button c-button_small c-button_cancel" onClick={() => this.filterOrders(false)}>全注文表示</button>
         </div>
 
         <div className="u-mt20p">
