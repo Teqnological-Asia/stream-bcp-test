@@ -9,7 +9,7 @@ class Order extends Component {
     super(props);
     this.state = {
       curDateTime: new Date(),
-      isWorkingActive: false
+      isWorkingActive: true
     };
   }
 
@@ -19,7 +19,7 @@ class Order extends Component {
   }
 
   componentDidMount() {
-    this.loadOrders();
+    this.loadOrders(1, true);
   }
 
   loadOrders = (page = 1, isWorking = false) => {
@@ -33,11 +33,13 @@ class Order extends Component {
     })
   }
   handlePageChange = page => {
-    this.loadOrders(page);
+    const isWorking = this.state.isWorkingActive
+    this.loadOrders(page, isWorking);
   }
 
   reloadData = () => {
-    this.loadOrders();
+    const isWorking = this.state.isWorkingActive
+    this.loadOrders(1, isWorking);
     this.setState({ curDateTime: new Date() });
   }
   render() {
