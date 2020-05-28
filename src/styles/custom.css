@@ -593,6 +593,7 @@ li.custom {
   border-bottom: none !important;
   border-radius: 4px;
   background-color: #ffffff;
+  cursor: pointer;
 }
 li.is_current_custom {
   
