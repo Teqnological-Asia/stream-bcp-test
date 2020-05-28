@@ -577,10 +577,37 @@ label.my-modal_close::after {
     font-size: 12px;
   }
 }
+@media screen and (max-width: 375px) {
+  li.custom {
+    background-color: #fff !important;
+  }
+}
+li.custom {
+  font-size: 14px;
+  line-height: 1em;
+  display: inline-block;
+  margin-right: 20px;
+  padding-left: 1em;
+  padding-right: 1em;
+  border: none;
+  border-bottom: none !important;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+li.is_current_custom {
+  
+  background-color: #091733 !important;
+}
+li.is_current_custom a {
+  display: block;
+  padding: 10px 0;
+  color: #fff;
+}
 @media not all and (min-width: 376px) {
   .hide-desktop{
     visibility: hidden;
   }
+
 }
 
 

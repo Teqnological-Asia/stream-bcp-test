@@ -9,6 +9,7 @@ class Order extends Component {
     super(props);
     this.state = {
       curDateTime: new Date(),
+      isWorkingActive: false
     };
   }
 
@@ -21,12 +22,15 @@ class Order extends Component {
     this.loadOrders();
   }
 
-  loadOrders = (page=1, isWorking=false) => {
-    let params = {page: page};
+  loadOrders = (page = 1, isWorking = false) => {
+    let params = { page: page };
     this.props.loadOrdersRequest(params, isWorking);
   }
   filterOrders = (isWorking = false) => {
     this.loadOrders(1, isWorking)
+    this.setState({
+      isWorkingActive: isWorking
+    })
   }
   handlePageChange = page => {
     this.loadOrders(page);
@@ -34,21 +38,21 @@ class Order extends Component {
 
   reloadData = () => {
     this.loadOrders();
-    this.setState({curDateTime: new Date()});
+    this.setState({ curDateTime: new Date() });
   }
-
   render() {
     const { orders, currentPage, totalPages } = this.props;
+    const {isWorkingActive} = this.state
     const showPagination = orders.length > 0;
     const pagination = (
       showPagination &&
-        <Pagination
-          boundaryPagesRange={0}
-          siblingPagesRange={2}
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onChange={this.handlePageChange}
-        />
+      <Pagination
+        boundaryPagesRange={0}
+        siblingPagesRange={2}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onChange={this.handlePageChange}
+      />
     );
 
     return (
@@ -62,9 +66,15 @@ class Order extends Component {
             </div>
           </div>
         </div>
-        <div className="u-mt20p">
-          <button className="c-button c-button_small" onClick={() => this.filterOrders(true)}>未約定注文</button>
-          <button className="c-button c-button_small c-button_cancel" onClick={() => this.filterOrders(false)}>全注文表示</button>
+        <div className="p-nav_sub">
+          <ul>
+            <li className={`custom ${isWorkingActive?'is_current_custom': ''}`}>
+              <a  onClick={() => this.filterOrders(true)}>未約定注文</a>
+            </li>
+            <li className={`custom ${isWorkingActive?'': 'is_current_custom'}`}>
+              <a  onClick={() => this.filterOrders(false)}>全注文表示</a>
+            </li>
+          </ul>
         </div>
 
         <div className="u-mt20p">
