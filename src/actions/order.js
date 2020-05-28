@@ -14,11 +14,11 @@ export const loadOrdersSuccess = (orders, currentPage, totalPages) => {
   }
 }
 
-export const loadOrdersRequest = (params, isWorking) => {
+export const loadOrdersRequest = (params, filter) => {
   return dispatch => {
     dispatch(setLoading(true))
     const request = axios
-                      .get(`${process.env.REACT_APP_BALANCE_API_HOST}/v3/orders${isWorking?'/working':''}`, {
+                      .get(`${process.env.REACT_APP_BALANCE_API_HOST}/v3/orders${filter!==""?'/'+filter:''}`, {
                         params: params,
                         headers: getAuthHeader()
                       });

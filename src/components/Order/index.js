@@ -9,7 +9,7 @@ class Order extends Component {
     super(props);
     this.state = {
       curDateTime: new Date(),
-      isWorkingActive: true
+      filter: 'working'
     };
   }
 
@@ -19,32 +19,32 @@ class Order extends Component {
   }
 
   componentDidMount() {
-    this.loadOrders(1, true);
+    this.loadOrders(1, 'working');
   }
 
-  loadOrders = (page = 1, isWorking = false) => {
+  loadOrders = (page = 1, filter) => {
     let params = { page: page };
-    this.props.loadOrdersRequest(params, isWorking);
+    this.props.loadOrdersRequest(params, filter);
   }
-  filterOrders = (isWorking = false) => {
-    this.loadOrders(1, isWorking)
+  filterOrders = (filter) => {
+    this.loadOrders(1, filter)
     this.setState({
-      isWorkingActive: isWorking
+      filter: filter
     })
   }
   handlePageChange = page => {
-    const isWorking = this.state.isWorkingActive
-    this.loadOrders(page, isWorking);
+    const filter = this.state.filter
+    this.loadOrders(page, filter);
   }
 
   reloadData = () => {
-    const isWorking = this.state.isWorkingActive
-    this.loadOrders(1, isWorking);
+    const filter = this.state.filter
+    this.loadOrders(1, filter);
     this.setState({ curDateTime: new Date() });
   }
   render() {
     const { orders, currentPage, totalPages } = this.props;
-    const {isWorkingActive} = this.state
+    const {filter} = this.state
     const showPagination = orders.length > 0;
     const pagination = (
       showPagination &&
@@ -70,11 +70,11 @@ class Order extends Component {
         </div>
         <div className="p-nav_sub">
           <ul>
-            <li className={`custom ${isWorkingActive?'is_current_custom': ''}`}>
-              <a  onClick={() => this.filterOrders(true)}>未約定注文</a>
+            <li className={`custom ${filter?'is_current_custom': ''}`}>
+              <a  onClick={() => this.filterOrders('working')}>未約定注文</a>
             </li>
-            <li className={`custom ${isWorkingActive?'': 'is_current_custom'}`}>
-              <a  onClick={() => this.filterOrders(false)}>全注文表示</a>
+            <li className={`custom ${filter?'': 'is_current_custom'}`}>
+              <a  onClick={() => this.filterOrders('')}>全注文表示</a>
             </li>
           </ul>
         </div>
