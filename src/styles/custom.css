@@ -577,12 +577,8 @@ label.my-modal_close::after {
     font-size: 12px;
   }
 }
-@media screen and (max-width: 375px) {
-  li.custom {
-    background-color: #fff !important;
-  }
-}
-li.custom {
+
+.p-nav_sub li.custom {
   font-size: 14px;
   line-height: 1em;
   display: inline-block;
@@ -590,16 +586,15 @@ li.custom {
   padding-left: 1em;
   padding-right: 1em;
   border: none;
-  border-bottom: none !important;
+  border-bottom: none;
   border-radius: 4px;
   background-color: #ffffff;
   cursor: pointer;
 }
-li.is_current_custom {
-  
-  background-color: #091733 !important;
+.p-nav_sub li.is_current_custom {
+  background-color: #091733;
 }
-li.is_current_custom a {
+.p-nav_sub li.is_current_custom a {
   display: block;
   padding: 10px 0;
   color: #fff;
