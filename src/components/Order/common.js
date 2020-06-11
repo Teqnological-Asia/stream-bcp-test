@@ -14,7 +14,10 @@ export const tradeTypeCancelPath = {
   'equity': 'orders',
   'margin_open': 'margin_orders/open',
   'margin_close': 'margin_orders/close',
-  'margin_swap': 'margin_orders/swap'
+  'margin_swap': 'margin_orders/swap',
+  'general_margin_open': 'margin_orders/open',
+  'general_margin_close':'margin_orders/close',
+  'general_margin_swap':'margin_orders/swap'
 }
 
 export const suffixByTradeType = (side, trade_type = '') => {
@@ -26,9 +29,9 @@ export const suffixByTradeType = (side, trade_type = '') => {
 }
 export const suffixForMarginType = (trade_type) => {
   if ((/general_margin/).test(trade_type)) {
-    return "(一般)";  
+    return "(一般)";
   } else if ((/margin_open|margin_close|margin_swap/).test(trade_type)) {
-    return "(制度)";  
+    return "(制度)";
   } else return ""
 }
 export const statuses = {
