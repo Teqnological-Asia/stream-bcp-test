@@ -72,11 +72,12 @@ export const initMarginOrderForm = () => {
   }
 }
 
-export const clickMarginButton = (buttonType, pathname) => {
+export const clickMarginButton = (buttonType, pathname, marginTradeType = '') => {
   return dispatch => {
     dispatch({
       type: CLICK_MARGIN_BUTTON,
-      buttonType
+      buttonType,
+      marginTradeType
     })
     dispatch(push(pathname))
   }

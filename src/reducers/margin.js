@@ -16,6 +16,7 @@ const initialState = {
   marginOrder: null,
   marginOrderForm: null,
   marginOrderSendParams: null,
+  currentMarginType: '',
   isGeneral: false
 };
 
@@ -27,9 +28,16 @@ export const marginReducer = (state = initialState, action) => {
         marginPositions: action.marginPositions
       };
     case LOAD_STOCK_MARGIN_SUCCESS:
+      const currentMarginType = state.currentMarginType;
+      const stockMargin = action.stockMargin;
+      const filteredPositions = stockMargin.positions.filter(position => position.margin_trade_type === currentMarginType)
+      console.log(currentMarginType)
       return {
         ...state,
-        stock: action.stockMargin
+        stock: {
+          ...stockMargin,
+          positions: filteredPositions
+        }
       };
     case CHANGE_STOCK_MARGIN_POSITION: {
       const oldPositions = state.stock.positions
@@ -48,7 +56,8 @@ export const marginReducer = (state = initialState, action) => {
     case CLICK_MARGIN_BUTTON: {
       return {
         ...state,
-        buttonType: action.buttonType
+        buttonType: action.buttonType,
+        currentMarginType: action.marginTradeType
       }
     }
     case NEW_MARGIN_SWAP_SUCCESS: {

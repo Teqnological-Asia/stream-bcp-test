@@ -34,7 +34,7 @@ class MarginRow extends Component {
             isEnable ?
             <a
               className="c-button c-button_small c-button_actual"
-              onClick={() => clickMarginButton(`swap_${position.side}`, path)}
+              onClick={() => clickMarginButton(`swap_${position.side}`, path, position.margin_trade_type)}
             >
               現{position.side === 'buy' ? '引' : '渡'}
             </a>
@@ -46,7 +46,7 @@ class MarginRow extends Component {
             isEnable ?
             <a
               className={"c-button c-button_small " + buttonClass}
-              onClick={() => clickMarginButton(`order_${position.side}`, path)}
+              onClick={() => clickMarginButton(`order_${position.side}`, path, position.margin_trade_type)}
             >
               返済{position.side === 'buy' ? '売' : '買'}
             </a>
