@@ -31,7 +31,6 @@ export const marginReducer = (state = initialState, action) => {
       const currentMarginType = state.currentMarginType;
       const stockMargin = action.stockMargin;
       const filteredPositions = stockMargin.positions.filter(position => position.margin_trade_type === currentMarginType)
-      console.log(currentMarginType)
       return {
         ...state,
         stock: {
