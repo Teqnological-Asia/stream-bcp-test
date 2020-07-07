@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import MarginOrderConfirm from '../../components/Margin/Order/Confirm';
-import { sendMarginOrder } from '../../actions/margin'
+import { sendMarginOrder } from '../../actions/margin';
+import { marginStockPositions } from '../../selectors/MarginSelector';
 
 class MarginOrderConfirmContainer extends Component {
   render() {
@@ -16,7 +17,7 @@ const mapStateToProps = (state) => ({
   stockDetail: state.physicalReducer.stockDetail,
   buttonType: state.marginReducer.buttonType,
   marginOrderSendParams: state.marginReducer.marginOrderSendParams,
-  marginPositions: state.marginReducer.marginPositions
+  marginPositions: marginStockPositions(state),
 })
 
 const mapDispatchToProps = (dispatch) => {

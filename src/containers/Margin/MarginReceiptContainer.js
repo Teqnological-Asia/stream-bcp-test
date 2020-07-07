@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import MarginReceipt from '../../components/Margin/Receipt';
 import { bindActionCreators } from 'redux';
 import { sendMarginSwap } from '../../actions/margin';
+import { marginStockPositions } from '../../selectors/MarginSelector';
 
 class MarginReceiptContainer extends Component {
   render() {
@@ -16,7 +17,7 @@ const mapStateToProps = (state) => ({
   marginOrder: state.marginReducer.marginOrder,
   stockDetail: state.physicalReducer.stockDetail,
   buttonType: state.marginReducer.buttonType,
-  marginPositions: state.marginReducer.marginPositions
+  marginPositions: marginStockPositions(state),
 })
 
 const mapDispatchToProps = (dispatch) => {
