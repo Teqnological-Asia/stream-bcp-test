@@ -167,7 +167,12 @@ export const newMarginSwap = (stockId, side, accountType = '1') => {
       quantity: sumQuantity.toString(),
       margin_trade_type: marginTradeType === 'system' ? '1' : '2',
     }
-    const request = axios.post(url, body, { headers: getAuthHeader() });
+    const request = axios.post(url, body, {
+      headers: {
+        "X-BAAS-GMON": "ON",
+        ...getAuthHeader(),
+      }
+    });
     return request.then((response) => {
       const marginOrder = {
         ...response.data.data,
@@ -203,7 +208,12 @@ export const sendMarginSwap = (stockId, side) => {
       margin_trade_type: marginTradeType === 'system' ? '1' : '2',
       wb5_confirmed_date: marginOrder.wb5_confirmed_date
     }
-    const request = axios.post(url, body, { headers: getAuthHeader() });
+    const request = axios.post(url, body, {
+      headers: {
+        "X-BAAS-GMON": "ON",
+        ...getAuthHeader(),
+      }
+    });
     return request.then((response) => {
       const newMarginOrder = {
         ...marginOrder,
@@ -244,7 +254,10 @@ export const newMarginOrder = (id, side, params) => {
     }
 
     const request = axios.post(url, orderNewParams, {
-      headers: getAuthHeader(),
+      headers: {
+        "X-BAAS-GMON": "ON",
+        ...getAuthHeader(),
+      }
     });
 
     return request.then((response) => {
@@ -269,7 +282,10 @@ export const sendMarginOrder = (id) => {
     const url = `${process.env.REACT_APP_ORDER_API_HOST}/margin_orders/close/send`
     const { marginOrderSendParams } = getState().marginReducer
     const request = axios.post(url, marginOrderSendParams, {
-      headers: getAuthHeader(),
+      headers: {
+        "X-BAAS-GMON": "ON",
+        ...getAuthHeader(),
+      }
     });
     return request.then((response) => {
       dispatch(changeMarginOrderForm(null));
