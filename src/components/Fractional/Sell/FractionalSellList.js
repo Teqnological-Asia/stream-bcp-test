@@ -2,14 +2,18 @@ import React from 'react';
 import { formatCurrency } from '../../../utils';
 import { account_types, bookUnitPrice } from '../common';
 
-const FractionalSellList = ({fractionals, handleCheck}) => {
+const FractionalSellList = ({fractionals, handleCheck, selectedStockCodes}) => {
   if (fractionals.length === 0) return null;
 
   const listFractionals = fractionals.map((fractional, stock_code) => (
     <tr key={stock_code}>
       <td className="c-action">
         <label>
-          <input type="checkbox" name="dummy_check" onChange={handleCheck.bind(this, fractional.stock_code, fractional.quantity)} />
+          <input
+            type="checkbox" name="dummy_check"
+            checked={selectedStockCodes.includes(fractional.stock_code)}
+            onChange={handleCheck.bind(this, fractional.stock_code, fractional.quantity)}
+          />
           <span>選択する</span>
         </label>
       </td>

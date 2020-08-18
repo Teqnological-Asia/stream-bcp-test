@@ -614,3 +614,6 @@ label.my-modal_close::after {
   }
 }
 
+.text-center {
+  text-align: center;
+}

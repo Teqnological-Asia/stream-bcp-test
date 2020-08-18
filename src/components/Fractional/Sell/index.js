@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FractionalSellList from './FractionalSellList';
 import FractionalSellSummary from './FractionalSellSummary';
+import RejectModal from './FractionalSellRejectModal';
 import { Link } from 'react-router-dom';
 import { removeElementFromArray } from '../../../utils';
 
@@ -12,12 +13,17 @@ class FractionalSell extends Component {
       numberOfRow: 0,
       numberOfStock: 0,
       selectedStockCodes: [],
-      canSubmit: true
+      canSubmit: true,
+      isOpen: false
     }
   }
 
   componentDidMount() {
     this.props.loadFractionalsRequest();
+  }
+
+  setRejectModal(isOpen) {
+    this.setState({ isOpen: isOpen })
   }
 
   handleSubmit = (e) => {
@@ -27,6 +33,13 @@ class FractionalSell extends Component {
 
   handleCheck = (stock_code, quantity, e) => {
     const target = e.target;
+
+    if (stock_code.length === 5) { //WBCP-604
+      e.preventDefault();
+      e.stopPropagation();
+      this.setRejectModal(true);
+      return;
+    }
 
     var newNumberOfRow = this.state.numberOfRow;
     var newNumberOfStock = this.state.numberOfStock;
@@ -53,6 +66,8 @@ class FractionalSell extends Component {
   }
 
   render() {
+    const { isOpen, selectedStockCodes } = this.state;
+
     return (
       <div className="l-contents_body_inner">
         <div className="u-mt40p">
@@ -75,7 +90,12 @@ class FractionalSell extends Component {
           </div>
         </div>
         <div className="u-mt20p">
-          <FractionalSellList fractionals={this.props.fractionals} handleCheck={this.handleCheck} />
+          <FractionalSellList
+            fractionals={this.props.fractionals}
+            selectedStockCodes={selectedStockCodes}
+            handleCheck={this.handleCheck}
+          />
+          <RejectModal isOpen={isOpen} handleClose={() => this.setRejectModal(false)}/>
         </div>
         <div className="u-mt20p">
           <div className="p-section_lead">
