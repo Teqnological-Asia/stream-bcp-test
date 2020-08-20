@@ -42,7 +42,7 @@ export const transactionByButtonType = (buttonType, tradeType) => {
       transaction = '現引'; break
     case SWAP_SELL:
       transaction = '現渡'; break
-    default: null; break
+    default: break
   }
   if(!tradeType) return transaction
   const transactionWithTradeType = tradeType === 'system' ? `${transaction}制度` : `${transaction}一般`
