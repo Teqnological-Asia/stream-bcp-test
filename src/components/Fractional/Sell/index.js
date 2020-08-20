@@ -34,7 +34,7 @@ class FractionalSell extends Component {
   handleCheck = (stock_code, quantity, e) => {
     const target = e.target;
 
-    if (stock_code.length === 5) { //WBCP-604
+    if (stock_code.length === 5 && /9$/.test(stock_code)) { //WBCP-604
       e.preventDefault();
       e.stopPropagation();
       this.setRejectModal(true);
