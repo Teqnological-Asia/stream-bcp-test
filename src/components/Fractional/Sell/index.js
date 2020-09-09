@@ -75,11 +75,11 @@ class FractionalSell extends Component {
             <div className="p-section_header_title">単元未満株式売却</div>
             <div className="p-section_header_tools">
               <ul>
-                {/* <li>
+                <li>
                   <Link to="/account/fractional/clame">
                     <i className="icon-right-open"></i>買取請求はこちら
                   </Link>
-                </li> */}
+                </li>
                 <li>
                   <Link to="/account/fractional/cancel">
                     <i className="icon-info-circled"></i>予約確認はこちら（当日のみ)

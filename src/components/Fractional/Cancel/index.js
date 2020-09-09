@@ -59,11 +59,11 @@ class FractionalCancel extends Component {
                     <i className="icon-right-open"></i>売却はこちら
                   </Link>
                 </li>
-                {/* <li>
+                <li>
                   <Link to="/account/fractional/clame">
                     <i className="icon-right-open"></i>買取請求はこちら
                   </Link>
-                </li> */}
+                </li>
               </ul>
             </div>
           </div>
