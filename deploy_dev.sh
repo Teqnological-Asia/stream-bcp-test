@@ -27,6 +27,6 @@ fi
 
 yarn --cwd ../web-open-account
 yarn --cwd ../web-open-account build:development
-cp -r ../web-open-account/build/ ./build/op/ --profile=$PROFILE
-aws s3 sync build/ s3://web-bcp-dev/
+cp -r ../web-open-account/build/ ./build/op/
+aws s3 sync build/ s3://web-bcp-dev/ --profile=$PROFILE
 echo -e "${GREEN}Deploy done${NC}"
