@@ -6,7 +6,7 @@ const FractionalSellSummary = ({numberOfRow, numberOfStock}) => {
     <table>
       <tbody>
         <tr>
-          <th>受付日<br/><span className="u-11px">発注前日23:59まで受付</span></th>
+          <th>受付日<br/><span className="u-11px">発注前日15:59まで受付</span></th>
           <td>
             {formatDate(new Date())}
           </td>
