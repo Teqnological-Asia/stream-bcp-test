@@ -72,7 +72,7 @@ class Delivery extends Component {
       removeElementFromArray(selectedStockCodes, stock_code);
     }
 
-    var totalCommissionAmount = newNumberOfRow * 1080;
+    var totalCommissionAmount = newNumberOfRow * 1100;
     var newCannotSubmit = false;
 
     if (newNumberOfRow === 0) {
