@@ -57,7 +57,7 @@ class FractionalClame extends Component {
     }
 
     var newCanSubmit = (newNumberOfRow > 0) ? false : true;
-    var totalCommissionAmount = newNumberOfRow * 540;
+    var totalCommissionAmount = newNumberOfRow * 550;
 
     this.setState({
       numberOfRow: newNumberOfRow,
