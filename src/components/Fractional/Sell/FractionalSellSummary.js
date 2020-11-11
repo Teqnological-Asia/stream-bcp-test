@@ -13,7 +13,7 @@ const FractionalSellSummary = ({numberOfRow, numberOfStock}) => {
         </tr>
         <tr>
           <th>支払い方法</th>
-          <td>約定日から起算して2営業日目にお預り金へ入金されます。</td>
+          <td>約定日から起算して3営業日目にお預り金へ入金されます。</td>
         </tr>
         <tr>
           <th>合計注文件数</th>
