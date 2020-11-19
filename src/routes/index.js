@@ -49,7 +49,7 @@ import LoadingContainer from '../containers/Loading/LoadingContainer';
 import CloseAccountContainer from '../containers/CloseAccount/CloseAccountContainer';
 import LendingBalanceContainer from '../containers/Trade/TradeLendingBalanceContainer'
 import TradeLendingHistory from '../containers/Trade/TradeLendingHistoryContainer';
-import TradeTransitionReferenceContainer from '../containers/Trade/TradeTransitionReferenceContainer';
+// import TradeTransitionReferenceContainer from '../containers/Trade/TradeTransitionReferenceContainer';
 import { AppHelmet } from '../components/Helmet';
 
 export const routes = [
@@ -83,11 +83,11 @@ export const routes = [
     component: LendingBalanceContainer,
     isAuthenticated: true
   },
-  {
-    path: '/account/trade/transition-reference',
-    component: TradeTransitionReferenceContainer,
-    isAuthenticated: true
-  },
+  // {
+  //   path: '/account/trade/transition-reference',
+  //   component: TradeTransitionReferenceContainer,
+  //   isAuthenticated: true
+  // },
   {
     path: '/account/payment/history',
     component: PaymentHistoryContainer,

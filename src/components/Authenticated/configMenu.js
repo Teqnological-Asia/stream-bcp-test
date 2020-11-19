@@ -73,13 +73,13 @@ const configMenu = () => {
           subItems: [],
           groupId: 1
         },
-        {
-          id:15,
-          name: '信用保証金推移',
-          href: '/account/trade/transition-reference',
-          subItems: [],
-          groupId: 1
-        }
+        // {
+        //   id:15,
+        //   name: '信用保証金推移',
+        //   href: '/account/trade/transition-reference',
+        //   subItems: [],
+        //   groupId: 1
+        // }
       ]
     },
     {
