@@ -37,6 +37,7 @@ import MarginReceiptContainer from '../containers/Margin/MarginReceiptContainer'
 import MarginReceiptCompleteContainer from '../containers/Margin/MarginReceiptCompleteContainer';
 import MarginDeliveryContainer from '../containers/Margin/MarginDeliveryContainer';
 import MarginDeliveryCompleteContainer from '../containers/Margin/MarginDeliveryCompleteContainer';
+import UsStockContainer from '../containers/UsStock/UsStockContainer';
 import OrderContainer from '../containers/Order/OrderContainer';
 import OrderCancelContainer from '../containers/Order/OrderCancelContainer';
 import OrderCancelCompleteContainer from '../containers/Order/OrderCancelCompleteContainer';
@@ -236,6 +237,11 @@ export const routes = [
   {
     path: '/account/margin/:code/delivery/complete',
     component: MarginDeliveryCompleteContainer,
+    isAuthenticated: true
+  },
+  {
+    path: '/account/us-stock',
+    component: UsStockContainer,
     isAuthenticated: true
   },
   {

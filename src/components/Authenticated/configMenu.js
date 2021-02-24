@@ -171,6 +171,17 @@ const configMenu = () => {
         },
         {
           id: 11,
+          name: "米国株式売却",
+          href: "/account/us-stock",
+          subItems: [
+            "/account/us-stock/:code/order",
+            "/account/us-stock/:code/order/confirm",
+            "/account/us-stock/:code/order/complete"
+          ],
+          groupId: 3
+        },
+        {
+          id: 12,
           name: "注文照会",
           href: "/account/order",
           subItems: [
@@ -178,7 +189,7 @@ const configMenu = () => {
             "/account/order/:id/cancel/complete",
             "/account/order/:id/detail"
           ],
-          groupId: 3
+          groupId: 4
         }
       ]
     }
