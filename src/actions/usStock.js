@@ -140,7 +140,7 @@ export const getUsStockBalances = (stockCode) => {
     dispatch(setLoading(true))
     const params = {code: stockCode};
     const request = axios
-                      .get(`${process.env.REACT_APP_US_STOCK_BALANCES}/usStock/balances`, {
+                      .get(`${process.env.REACT_APP_BALANCE_API_HOST}/usStock/balances`, {
                         params: params,
                         headers: getAuthHeader()
                       });
@@ -193,7 +193,6 @@ export const saveOrderFormRequest = (id, params) => {
         wb4CheckPrice,
         wb4OrderID
       }
-      console.log(getState().usStockReducer)
       const otherDataForm = {
         price: getState().usStockReducer.orderPrice[0].estimatePrice.bid
       }
@@ -236,7 +235,7 @@ export const getPriceInfo = (symbol) => {
     dispatch(setLoading(true))
     const params = {symbol: symbol};
     const request = axios
-                      .get(`${process.env.REACT_APP_US_STOCK_ORDER}/usStockOrders/priceInfo`, {
+                      .get(`${process.env.REACT_APP_ORDER_API_HOST}/usStockOrders/priceInfo`, {
                         params: params,
                         headers: getAuthHeader()
                       });
