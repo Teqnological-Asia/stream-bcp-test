@@ -51,6 +51,8 @@ import CloseAccountContainer from '../containers/CloseAccount/CloseAccountContai
 import LendingBalanceContainer from '../containers/Trade/TradeLendingBalanceContainer'
 import TradeLendingHistory from '../containers/Trade/TradeLendingHistoryContainer';
 import UsStockSellContainer from '../containers/UsStock/UsStockSellContainer'
+import UsStockSellConfirm from '../containers/UsStock/UsStockSellConfirmContainer'
+import UsStockSellComplete from '../containers/UsStock/UsStockSellCompleteContainer'
 // import TradeTransitionReferenceContainer from '../containers/Trade/TradeTransitionReferenceContainer';
 import { AppHelmet } from '../components/Helmet';
 
@@ -295,6 +297,16 @@ export const routes = [
     component: UsStockSellContainer,
     isAuthenticated: true
   },
+  {
+    path: '/account/us-stock/:code/sell/confirm',
+    component: UsStockSellConfirm,
+    isAuthenticated: true
+  },
+  {
+    path: '/account/us-stock/:code/sell/complete',
+    component: UsStockSellComplete,
+    isAuthenticated: true
+  }
 ];
 
 export default function configRoutes() {

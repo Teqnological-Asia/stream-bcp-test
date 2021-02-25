@@ -168,22 +168,13 @@ export const loadStockDetailRequest = (stockCode) => {
 export const saveOrderFormRequest = (id, params) => {
   return (dispatch, getState) => {
     dispatch(setLoading(true))
-    const physicalDetail = getState().physicalReducer.physicalDetail;
+    const wb4AssetID = getState().usStockReducer.physicalDetail.wb4AssetID;
     const orderNewParams = {
-      symbol: physicalDetail.stock_code,
-      exchange: 'T',
-      side: 'Sell',
-      account_type: accountTypes[physicalDetail.account_type],
-      order_type: params.orderType,
-      execution_type: 'None',
+      wb4AssetID: wb4AssetID,
+      settlementCurrencyType: "BASE",
+      orderType: params.orderType.toLowerCase(),
       quantity: String(params.quantity),
-      expiration_type: 'DAY',
-      order_condition_type: 'None'
     };
-
-    if (orderNewParams['order_type'] === 'Limit') {
-      orderNewParams['price'] = String(params.price);
-    }
 
     const request = axios
                       .post(
@@ -196,15 +187,19 @@ export const saveOrderFormRequest = (id, params) => {
 
     return request.then((response) => {
       const data = response.data.data;
-      const orderNewResponse = {
-        system_order_id: data.system_order_id,
-        wb5_confirmed_date: data.wb5_confirmed_date,
-        wb5_confirmed_price: data.wb5_confirmed_price
-      };
-
-      dispatch(saveOrderForm(params));
-      dispatch(saveOrderSendParams({...orderNewParams, ...orderNewResponse}));
-      dispatch(push(`/account/physical/${id}/order/confirm`));
+      const { wb4CheckDate, wb4CheckPrice, wb4OrderID } = data
+      const orderParams = {
+        wb4CheckDate,
+        wb4CheckPrice,
+        wb4OrderID
+      }
+      console.log(getState().usStockReducer)
+      const otherDataForm = {
+        price: getState().usStockReducer.orderPrice[0].estimatePrice.bid
+      }
+      dispatch(saveOrderForm({...params, ...otherDataForm}));
+      dispatch(saveOrderSendParams({...orderNewParams, ...orderParams}));
+      dispatch(push(`/account/us-stock/${id}/sell/confirm`));
       dispatch(setLoading(false))
     });
   }
@@ -219,10 +214,10 @@ export const accountTypes = {
 export const createOrderRequest = (id) => {
   return (dispatch, getState) => {
     dispatch(setLoading(true))
-    const params = getState().physicalReducer.orderSendParams;
+    const params = getState().usStockReducer.orderSendParams;
     const request = axios
                       .post(
-                        `${process.env.REACT_APP_ORDER_API_HOST}/orders/send`,
+                        `${process.env.REACT_APP_ORDER_API_HOST}/usStockOrders/sell/new/send`,
                         params,
                         {
                           headers: getAuthHeader(),
@@ -230,7 +225,7 @@ export const createOrderRequest = (id) => {
                       );
 
     return request.then((response) => {
-      dispatch(push(`/account/physical/${id}/order/complete`));
+      dispatch(push(`/account/us-stock/${id}/sell/complete`));
       dispatch(setLoading(false))
     });
   }
