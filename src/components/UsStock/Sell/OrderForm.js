@@ -26,10 +26,6 @@ class OrderForm extends Component {
     this.setState({[name]: value});
   }
 
-  handleRadioChange = (e) => {
-    this.setState({orderType: e.target.value});
-  }
-
   handleSubmit = (e) => {
     e.preventDefault();
     const { quantity, orderType, price } = this.state;
@@ -112,96 +108,6 @@ class OrderForm extends Component {
     if (this.state.price.length + 1 > 9) {
       e.preventDefault();
     }
-  }
-
-  handleChangePrice = (e, type) => {
-    e.preventDefault();
-    const price = this.state.price;
-    const stockDetail = this.props.stockDetail;
-    const priceRangeLower = parseFloat(stockDetail.price_range_lower);
-    const priceRangeUpper = parseFloat(stockDetail.price_range_upper);
-    const priceRangeRule = stockDetail.price_range_rule;
-    const bid = parseFloat(stockDetail.bid);
-
-    if (price === '') {
-      if (bid < priceRangeLower) {
-        this.setState({price: priceRangeLower});
-      } else if (bid > priceRangeUpper) {
-        this.setState({price: priceRangeUpper});
-      } else {
-        this.setState({price: bid});
-      }
-      return;
-    }
-
-    if (!validateNumber(price)) {
-      alert(this.validateNumberError);
-      return;
-    }
-
-    let parsedPrice = parseFloat(price);
-
-    if (parsedPrice < priceRangeLower) {
-      this.setState({price: priceRangeLower});
-      return;
-    }
-
-    if (parsedPrice > priceRangeUpper) {
-      this.setState({price: priceRangeUpper});
-      return;
-    }
-
-    let rule = {};
-    for (let i = 0; i < priceRangeRule.length; i++) {
-      let item = priceRangeRule[i];
-      let nextItem = priceRangeRule[i + 1];
-
-      if (item['price'] !== null && parsedPrice === parseFloat(item['price']) && type === 'down') {
-        rule = item;
-        break;
-      }
-      if (item['price'] !== null && parsedPrice < item['price']) {
-        rule = item;
-        break;
-      }
-      if (nextItem === undefined) {
-        rule = item;
-        break;
-      }
-    }
-
-    const step = parseFloat(rule['tick']);
-    var priceMin = parseFloat(rule['price']);
-
-    if (isNaN(priceMin)) {
-      priceMin = parseFloat(priceRangeRule[priceRangeRule.length - 2].price);
-    }
-
-    if (type === 'up') {
-      if (step >= 1) {
-        parsedPrice = Math.floor(((parsedPrice - priceMin) * 10) / (step * 10)) * step + step + priceMin;
-      } else{
-        parsedPrice = (((parsedPrice - priceMin) * 10) / (step * 10)) * step + step + priceMin;
-        parsedPrice = parsedPrice.toFixed(1);
-      }
-
-      if (parsedPrice > priceRangeUpper) {
-        parsedPrice = priceRangeUpper;
-      }
-    } else {
-      if (step >= 1) {
-        parsedPrice = Math.ceil(((parsedPrice - priceMin) * 10) / (step * 10)) * step + priceMin - step;
-      } else {
-        parsedPrice = (((parsedPrice - priceMin) * 10) / (step * 10)) * step + priceMin - step;
-        parsedPrice = parsedPrice.toFixed(1);
-      }
-
-      if (parsedPrice < priceRangeLower) {
-        parsedPrice = priceRangeLower;
-      }
-    }
-
-    this.setState({price: parsedPrice});
   }
 
   formattedQuantities = physical => (
