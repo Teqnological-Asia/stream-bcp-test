@@ -19,7 +19,7 @@ const UsStockRow = ({ usStockBalance, usStock }) => {
   const renderSellButton = (
     <Link
       className="c-button c-button_small c-button_sell"
-      to={`/account/us-stock/${usStockBalance.stockCode}/order`}
+      to={`/account/us-stock/${usStockBalance.stockCode}/sell`}
     >
       売却
     </Link>

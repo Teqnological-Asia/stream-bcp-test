@@ -656,3 +656,28 @@ label.my-modal_close::after {
     width: 33%;
   }
 }
+
+.price-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.price-container .price-item {
+  flex: 1;
+}
+
+.price-container .price-item .description {
+  margin-bottom: 15px;
+}
+
+.price-container .price-item .price{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+tr .notice {
+  font-size: 14px;
+  display: flex;
+  margin-bottom: 30px;
+}
