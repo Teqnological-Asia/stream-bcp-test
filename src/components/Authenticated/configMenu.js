@@ -174,9 +174,9 @@ const configMenu = () => {
           name: "米国株式売却",
           href: "/account/us-stock",
           subItems: [
-            "/account/us-stock/:code/order",
-            "/account/us-stock/:code/order/confirm",
-            "/account/us-stock/:code/order/complete"
+            "/account/us-stock/:code/sell",
+            "/account/us-stock/:code/sell/confirm",
+            "/account/us-stock/:code/sell/complete"
           ],
           groupId: 3
         },
