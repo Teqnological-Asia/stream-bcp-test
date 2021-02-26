@@ -101,7 +101,7 @@ export const configTitle = [
   },
   {
     route: '/account/physical$',
-    title: '現物株式売却｜お客さまサポートWEB - 株式会社スマートプラス'
+    title: '国内株式売却｜お客さまサポートWEB - 株式会社スマートプラス'
   },
   {
     route: '/account/physical/[0-9]+/order$',

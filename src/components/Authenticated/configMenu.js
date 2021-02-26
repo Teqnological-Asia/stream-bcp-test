@@ -144,7 +144,7 @@ const configMenu = () => {
       items: [
         {
           id: 9,
-          name: "現物株式売却",
+          name: "国内株式売却",
           href: "/account/physical",
           subItems: [
             "/account/physical/:code/order",

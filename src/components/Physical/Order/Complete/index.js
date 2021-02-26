@@ -27,7 +27,7 @@ class PhysicalOrderComplete extends Component {
         <OrderInfo {...this.props} />
         <div className="u-mt20p">
           <Link className="c-button" to="/account/order">注文照会へ</Link>
-          <Link className="c-button" to="/account/physical">現物株式売却へ</Link>
+          <Link className="c-button" to="/account/physical">国内株式売却へ</Link>
         </div>
       </div>
     );
