@@ -27,7 +27,7 @@ class UsStock extends Component {
         <div className="u-mt40p">
           <div className="p-section_header">
             <div className="p-section_header_title">
-              現物株式 <b>売却</b>
+              米国株式 <b>売却</b>
             </div>
             <div className="p-section_header_aside">
               <span> {formatDateTime(this.state.curDateTime)} </span>(
