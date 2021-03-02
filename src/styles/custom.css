@@ -681,3 +681,11 @@ tr .notice {
   display: flex;
   margin-bottom: 30px;
 }
+
+table.c-table_list tbody tr .us-stock-price {
+  text-align: center;
+}
+
+.us-stock-price span:first-child {
+  padding-right: 20px;
+}

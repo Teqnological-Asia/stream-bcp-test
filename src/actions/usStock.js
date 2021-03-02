@@ -13,7 +13,8 @@ import {
   SAVE_STOCK_SEND_PARAMS,
   GET_ORDER_PRICE_SUCCESS,
   LOAD_US_STOCK_BALANCES_SUCCESS,
-  LOAD_US_STOCKS_SUCCESS
+  LOAD_US_STOCKS_SUCCESS,
+  GET_INTRADAY_SUCCESS
 } from '../constants/usStock';
 
 
@@ -23,6 +24,13 @@ export const loadUsStockBalancesSuccess = (usStockBalances) => {
     usStockBalances,
   };
 };
+
+export const getIntradaySuccess = (intraday) => {
+  return {
+    type: GET_INTRADAY_SUCCESS,
+    intraday
+  }
+}
 
 export const loadUsStocksSuccess = (usStocks) => {
   return {
@@ -98,7 +106,7 @@ export const loadUsStockBalancesRequest = () => {
   };
 };
 
-export const loadUsStocksRequest = () => {
+export const loadUsStocksRequest = (type) => {
   return (dispatch) => {
     dispatch(setLoading(true));
     const request = axios.get(
@@ -112,6 +120,11 @@ export const loadUsStocksRequest = () => {
     );
 
     return request.then((response) => {
+      const isUsStockPurchase = type === 'Purchase'
+      if (isUsStockPurchase) {
+        const code = response.data.data.items.map(item => item.code)
+        dispatch(getIntradayInfo(code))
+      }
       dispatch(loadUsStocksSuccess(response.data.data));
       dispatch(setLoading(false));
     });
@@ -244,4 +257,20 @@ export const getPriceInfo = (symbol) => {
       dispatch(setLoading(false))
     });
   };
+}
+
+
+export const getIntradayInfo = (code) => {
+  return dispatch => {
+    dispatch(setLoading(true))
+    const params = {code};
+    const request = axios.get(`${process.env.REACT_APP_PRICE_API_HOST}/v2/intradays`, {
+      params,
+      headers: getAuthHeader()
+    })
+    return request.then((response) => {
+      dispatch(getIntradaySuccess(response.data.data))
+      dispatch(setLoading(false))
+    })
+  }
 }

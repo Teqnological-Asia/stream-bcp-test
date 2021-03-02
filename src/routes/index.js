@@ -53,6 +53,7 @@ import TradeLendingHistory from '../containers/Trade/TradeLendingHistoryContaine
 import UsStockSellContainer from '../containers/UsStock/UsStockSellContainer'
 import UsStockSellConfirm from '../containers/UsStock/UsStockSellConfirmContainer'
 import UsStockSellComplete from '../containers/UsStock/UsStockSellCompleteContainer'
+import UsStockPurchaseContainer from '../containers/UsStock/UsStockPurchaseContainer'
 // import TradeTransitionReferenceContainer from '../containers/Trade/TradeTransitionReferenceContainer';
 import { AppHelmet } from '../components/Helmet';
 
@@ -305,6 +306,11 @@ export const routes = [
   {
     path: '/account/us-stock/:code/sell/complete',
     component: UsStockSellComplete,
+    isAuthenticated: true
+  },
+  {
+    path: '/account/us-stock/purchase',
+    component: UsStockPurchaseContainer,
     isAuthenticated: true
   }
 ];

@@ -154,7 +154,18 @@ const configMenu = () => {
           groupId: 3
         },
         {
-          id: 10,
+          id: 11,
+          name: "国内株式購入",
+          href: "/account/us-stock/purchase",
+          subItems: [
+            "/account/us-stock/:code/purchase",
+            "/account/us-stock/:code/purchase/confirm",
+            "/account/us-stock/:code/purchase/complete"
+          ],
+          groupId: 3
+        },
+        {
+          id: 11,
           name: "信用建玉決済",
           href: "/account/margin",
           subItems: [
@@ -170,7 +181,7 @@ const configMenu = () => {
           groupId: 3
         },
         {
-          id: 11,
+          id: 12,
           name: "米国株式売却",
           href: "/account/us-stock",
           subItems: [
@@ -181,7 +192,7 @@ const configMenu = () => {
           groupId: 3
         },
         {
-          id: 12,
+          id: 13,
           name: "注文照会",
           href: "/account/order",
           subItems: [
