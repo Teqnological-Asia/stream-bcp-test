@@ -119,7 +119,7 @@ class OrderForm extends Component {
   )
 
   formattedUpdateTime = time => (
-    time && time[0] && time[0].exchangeRate ? moment(time[0].exchangeRate ).format('MM/DD hh:mm ') : '-'
+    time && time[0] && time[0].exchangeRate ? moment(time[0].exchangeRate.updateAt ).format('MM/DD hh:mm ') : '-'
   )
 
   formattedExchangeRate = rate => (

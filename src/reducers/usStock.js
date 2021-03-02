@@ -9,6 +9,7 @@ import {
   LOAD_US_STOCK_BALANCES_SUCCESS,
   LOAD_US_STOCKS_SUCCESS,
   GET_INTRADAY_SUCCESS,
+  GET_TRADE_CAPACITIES_SUCCESS,
 } from "../constants/usStock";
 
 const initialState = {
@@ -21,6 +22,7 @@ const initialState = {
   usStockBalances: [],
   usStocks: [],
   intraday: [],
+  capacities: null,
 };
 
 export const usStockReducer = (state = initialState, action) => {
@@ -71,6 +73,11 @@ export const usStockReducer = (state = initialState, action) => {
       return {
         ...state,
         intraday: action.intraday,
+      };
+    case GET_TRADE_CAPACITIES_SUCCESS:
+      return {
+        ...state,
+        capacities: action.capacities,
       };
     default:
       return state;

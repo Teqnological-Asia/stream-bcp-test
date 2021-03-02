@@ -689,3 +689,8 @@ table.c-table_list tbody tr .us-stock-price {
 .us-stock-price span:first-child {
   padding-right: 20px;
 }
+
+.u-row .p-input-shares {
+  font-size: 14px;
+  padding-bottom: 10px;
+}

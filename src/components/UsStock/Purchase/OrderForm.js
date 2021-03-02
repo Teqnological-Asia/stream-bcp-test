@@ -28,20 +28,14 @@ class OrderForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { quantity, orderType, price } = this.state;
+    const { quantity } = this.state;
 
     if (!quantity || !validateIntegerNumber(quantity)) {
       alert(this.validateNumberError);
       return;
     }
 
-    if (orderType === 'Limit' && (!price || !validateNumber(price))) {
-      alert(this.validateNumberError);
-      return;
-    }
-
-
-    this.props.saveOrderFormRequest(this.props.stockCode, this.state);
+    this.props.savePurchaseOrderFormRequest(this.props.stockCode, quantity);
   }
 
   setShortableQuantity = () => {
@@ -110,16 +104,12 @@ class OrderForm extends Component {
     }
   }
 
-  formattedQuantities = physical => (
-    physical && physical.shortableQuantity ? formatCurrency(physical.shortableQuantity) : '-'
-  )
-
   formattedTransactionPrice = price => (
-    price && price[0] && price[0].estimatePrice ? formatCurrency(price[0].estimatePrice.bid) : '-'
+    price && price[0] && price[0].estimatePrice ? formatCurrency(price[0].estimatePrice.ask) : '-'
   )
 
   formattedUpdateTime = time => (
-    time && time[0] && time[0].exchangeRate ? moment(time[0].exchangeRate ).format('MM/DD hh:mm ') : '-'
+    time && time[0] && time[0].exchangeRate ? moment(time[0].exchangeRate.updateAt ).format('MM/DD hh:mm ') : '-'
   )
 
   formattedExchangeRate = rate => (
@@ -130,8 +120,9 @@ class OrderForm extends Component {
     rate && rate[0] && rate[0].commission ? formatCurrency(rate[0].commission.value) : '-'
   )
 
+
   render() {
-    const { stockDetail, physicalDetail, orderPrice } = this.props;
+    const { stockDetail, physicalDetail, orderPrice, capacities } = this.props;
     const { quantity, orderType, price } = this.state;
 
     if (stockDetail === null || physicalDetail === null) return null;
@@ -149,12 +140,13 @@ class OrderForm extends Component {
                   </tr>
                   <tr>
                     <th>取引</th>
-                    <td>現物売却</td>
+                    <td>現物購入</td>
                   </tr>
                   <tr>
-                    <th>取引株数</th>
+                    <th style={{verticalAlign: 'baseline'}}>取引株数</th>
                     <td>
                       <div className="u-row">
+                          <p className="p-input-shares">買付余力：{ capacities && formatCurrency(capacities.current_equity_trading_power)}円</p>
                         <div className="u-col_50 u-col_100_sp">
                           <div className="p-input_updown">
                             <div className="p-input">
@@ -166,7 +158,7 @@ class OrderForm extends Component {
                           </div>
                         </div>
                         <div className="u-col_50 u-col_100_sp u-mt10p_sp">
-                          <p style={{fontSize: '12px'}}>売却可能数量　{this.formattedQuantities(physicalDetail)}株</p>
+                          <p style={{fontSize: '12px'}}>売却可能数量 {orderPrice[0] && formatCurrency(orderPrice[0].maxOrderAmount)} 株</p>
                         </div>
                       </div>
                     </td>
@@ -234,7 +226,7 @@ class OrderForm extends Component {
           </div>
         </div>
         <div className="u-mt20p">
-          <Link className="c-button c-button_cancel" to="/account/us-stock">一覧へ戻る</Link>
+          <Link className="c-button c-button_cancel" to="/account/us-stock/purchase">一覧へ戻る</Link>
           <input className="c-button" type="submit" value="確認画面へ" disabled={!quantity || (orderType === 'Limit' && !price)} />
         </div>
       </form>
