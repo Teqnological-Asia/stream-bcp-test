@@ -55,6 +55,7 @@ import UsStockSellConfirm from '../containers/UsStock/UsStockSellConfirmContaine
 import UsStockSellComplete from '../containers/UsStock/UsStockSellCompleteContainer'
 import UsStockPurchaseContainer from '../containers/UsStock/UsStockPurchaseContainer'
 import UsStockPurchaseOrderContainer from '../containers/UsStock/UsStockPurchaseOrderContainer'
+import UsStockPurchaseOrderConfirmContainer from '../containers/UsStock/UsStockPurchaseOrderConfirmContainer'
 // import TradeTransitionReferenceContainer from '../containers/Trade/TradeTransitionReferenceContainer';
 import { AppHelmet } from '../components/Helmet';
 
@@ -317,6 +318,11 @@ export const routes = [
   {
     path: '/account/us-stock/:code/purchase',
     component: UsStockPurchaseOrderContainer,
+    isAuthenticated: true
+  },
+  {
+    path: '/account/us-stock/:code/purchase/confirm',
+    component: UsStockPurchaseOrderConfirmContainer,
     isAuthenticated: true
   }
 ];

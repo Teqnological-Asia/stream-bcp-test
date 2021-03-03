@@ -294,7 +294,7 @@ export const getTradeCapacities = () => {
 }
 
 export const savePurchaseOrderFormRequest = (id, params) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(setLoading(true))
     const orderNewParams = {
       settlementCurrencyType: "BASE",
@@ -316,14 +316,37 @@ export const savePurchaseOrderFormRequest = (id, params) => {
     return request.then((response) => {
       const data = response.data.data;
       const { wb4CheckDate, wb4CheckPrice, wb4OrderID } = data
+      const otherDataForm = {
+        price: getState().usStockReducer.orderPrice[0].estimatePrice.bid
+      }
       const orderParams = {
         wb4CheckDate,
         wb4CheckPrice,
         wb4OrderID
       }
-      dispatch(saveOrderForm(params));
+      dispatch(saveOrderForm({...params, ...otherDataForm}));
       dispatch(saveOrderSendParams({...orderNewParams, ...orderParams}));
       dispatch(push(`/account/us-stock/${id}/purchase/confirm`));
+      dispatch(setLoading(false))
+    });
+  }
+}
+
+export const createPurchaseOrderConfirm = (id) => {
+  return (dispatch, getState) => {
+    dispatch(setLoading(true))
+    const params = getState().usStockReducer.orderSendParams;
+    const request = axios
+                      .post(
+                        `${process.env.REACT_APP_ORDER_API_HOST}/usStockOrders/buy/new/send`,
+                        params,
+                        {
+                          headers: getAuthHeader(),
+                        }
+                      );
+
+    return request.then((response) => {
+      dispatch(push(`/account/us-stock/${id}/purchase/complete`));
       dispatch(setLoading(false))
     });
   }
