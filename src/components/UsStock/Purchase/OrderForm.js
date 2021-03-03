@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { formatCurrency, validateIntegerNumber, validateNumber } from '../../../utils';
+import { formatCurrency, validateIntegerNumber } from '../../../utils';
 import moment from 'moment';
 
 

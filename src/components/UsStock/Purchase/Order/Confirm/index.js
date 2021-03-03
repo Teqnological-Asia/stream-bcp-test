@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import OrderInfo from '../OrderInfo'
 
-class UsStockSellConfirm extends Component {
+class UsStockPurchaseOrderConfirm extends Component {
   constructor(props) {
     super(props);
 
@@ -64,4 +64,4 @@ class UsStockSellConfirm extends Component {
   }
 }
 
-export default UsStockSellConfirm;
+export default UsStockPurchaseOrderConfirm;
