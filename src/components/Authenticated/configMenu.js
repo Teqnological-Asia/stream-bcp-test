@@ -154,8 +154,8 @@ const configMenu = () => {
           groupId: 3
         },
         {
-          id: 11,
-          name: "国内株式購入",
+          id: 10,
+          name: "米国株式購入",
           href: "/account/us-stock/purchase",
           subItems: [
             "/account/us-stock/:code/purchase",

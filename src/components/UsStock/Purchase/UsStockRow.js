@@ -44,7 +44,7 @@ const UsStockRow = ({ usStock, intraday }) => {
       <td data-name="現在値">{formatCurrency(usStock.price) || "-"}円</td>
       <td data-name="前日比" className="us-stock-price">
         {formatPrice(usStock.price - usStock.previous_price)}
-        {formatRadio(usStock.price - usStock.previous_price/usStock.previous_price * 100)}
+        {formatRadio((usStock.price - usStock.previous_price)/usStock.previous_price * 100)}
       </td>
       <td className="c-c">{renderSellButton}</td>
     </tr>
