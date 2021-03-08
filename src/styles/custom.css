@@ -641,3 +641,18 @@ label.my-modal_close::after {
     width: 100%;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .p-nav_global .p-nav_global_body .scrollable > dl:first-child{
+    width: 100%;
+  }
+  .p-nav_global .p-nav_global_body .scrollable .p-emergency{
+    width: 100%;
+  }
+  .p-nav_global .p-nav_global_body .scrollable .p-emergency > dt{
+    width: 33%;
+  }
+  .p-nav_global .p-nav_global_body .scrollable .p-emergency > dd{
+    width: 33%;
+  }
+}
