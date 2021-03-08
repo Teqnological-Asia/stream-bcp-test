@@ -39,7 +39,7 @@ const UsStockRow = ({ usStock, intraday }) => {
         {usStock.name}
       </td>
       <td className="c-l" data-name="上場市場">
-        東証一部
+        {usStock.market}
       </td>
       <td data-name="現在値">{formatCurrency(usStock.price) || "-"}円</td>
       <td data-name="前日比" className="us-stock-price">
