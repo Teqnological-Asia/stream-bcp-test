@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ShomenRow from './ShomenRow';
 
+
 class Shomen extends Component {
   constructor(props) {
     super(props);
@@ -12,32 +13,27 @@ class Shomen extends Component {
     }
   }
 
-  componentDidUpdate() {
-    const { documents } = this.props;
+  componentDidUpdate(prevProps) {
+    const { documents, hasFinishReading } = this.props;
     const listDocuments = documents.filter((edocument) => edocument != null);
     const listRenderedDocuments = listDocuments.filter((edocument) => edocument.deliver_status === '0');
     this.setState({
       listRenderedDocuments: listRenderedDocuments
     });
+    if (prevProps.hasFinishReading !== hasFinishReading) {
+      this.inputElement.click();
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (this.props.documents !== nextProps.documents || this.state.isButtonDisable !== nextState.isButtonDisable || this.state.numberOfClickedDocuments !== nextState.numberOfClickedDocuments) {
+    if (this.props.documents !== nextProps.documents || this.state.isButtonDisable !== nextState.isButtonDisable || this.state.numberOfClickedDocuments !== nextState.numberOfClickedDocuments || this.props.hasFinishReading !== nextProps.hasFinishReading) {
       return true;
     }
     return false;
   }
 
   handleCloseShomen = () => {
-    this.inputElement.click();
-    const submitDocuments = this.props.documents.filter(edocument => edocument.deliver_status === '0' || edocument.deliver_status === '1');
-
-    var codes = [];
-    for (var i = 0; i < submitDocuments.length; i++) {
-      codes.push(submitDocuments[i].code);
-    }
-
-    this.props.lbxConfirmRequest(codes);
+    this.props.getDeliverStatus();
   }
 
   handleClickLink = (edocument) => {
