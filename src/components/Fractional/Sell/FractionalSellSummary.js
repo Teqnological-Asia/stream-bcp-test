@@ -25,7 +25,7 @@ const FractionalSellSummary = ({numberOfRow, numberOfStock}) => {
         </tr>
         <tr>
           <th>合計手数料金額</th>
-          <td>約定代金の1%（+消費税）</td>
+          <td>約定代金の1.1%（消費税込み）【2021年3月26日16:00以降、約定代金の1.1%（消費税込み）又は55円のいずれか大きい金額】</td>
         </tr>
       </tbody>
     </table>
