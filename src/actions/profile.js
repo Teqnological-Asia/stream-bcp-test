@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { LOAD_PROFILE_SUCCESS, LOAD_ACCOUNTS_INFO_SUCCESS } from '../constants/profile';
+import { LOAD_PROFILE_SUCCESS, LOAD_ACCOUNTS_INFO_SUCCESS, GET_DELIVER_STATUS_SUCCESS } from '../constants/profile';
+import { lbxConfirmRequest } from '../actions/shomen';
 import { getAuthHeader } from './auth';
 import { loadPublicNotificationsRequest } from '../actions/publicNotification';
 import { loadPrivateNotificationsRequest } from '../actions/privateNotification';
@@ -19,6 +20,11 @@ export const loadAccountsInfoSuccess = (currentAccount, accounts) => ({
   currentAccount,
   accounts
 });
+
+export const getDeliverStatusSuccess = (hasFinishReading) => ({
+  type: GET_DELIVER_STATUS_SUCCESS,
+  hasFinishReading,
+})
 
 export const loadProfileRequest = (params) => {
   return dispatch => {
@@ -67,6 +73,35 @@ export const loadStockLendingStatus = () => {
         dispatch(setLoading(false))
       })
       .catch(err => {})
+  };
+};
+
+export const getDeliverStatus = (params) => {
+  return (dispatch, getState) => {
+    dispatch(setLoading(true))
+    const request = axios
+                      .get(`${process.env.REACT_APP_USER_INFORMATION_API_HOST}/profile`, {
+                        headers: getAuthHeader()
+                      });
+
+    return request
+      .then(({data: {data}}) => {
+        const documents = data.documents;
+        const readedDocuments = documents.filter(edocument => edocument.deliver_status === '0').length;
+        if (readedDocuments === 0) {
+          dispatch(getDeliverStatusSuccess(true))
+          const submitDocuments = documents.filter(edocument => edocument.deliver_status === '0' || edocument.deliver_status === '1');
+          var codes = [];
+          for (var i = 0; i < submitDocuments.length; i++) {
+            codes.push(submitDocuments[i].code);
+          }
+
+          dispatch(lbxConfirmRequest(codes));
+        } else {
+          alert('未読の書面が残っています。再度全てのリンク開き直してください')
+        }
+        dispatch(setLoading(false))
+      });
   };
 };
 
