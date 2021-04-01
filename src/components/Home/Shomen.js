@@ -33,7 +33,13 @@ class Shomen extends Component {
   }
 
   handleCloseShomen = () => {
-    this.props.getDeliverStatus();
+    const { documents } = this.props;
+    const submitDocuments = documents.filter(edocument => edocument.deliver_status === '0' || edocument.deliver_status === '1');
+    var codes = [];
+    for (var i = 0; i < submitDocuments.length; i++) {
+      codes.push(submitDocuments[i].code);
+    }
+    this.props.lbxConfirmRequest(codes)
   }
 
   handleClickLink = (edocument) => {
