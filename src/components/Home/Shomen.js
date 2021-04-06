@@ -12,10 +12,10 @@ class Shomen extends Component {
       numberOfClickedDocuments: 0,
       isButtonDisable: true
     }
+  }
 
-    this.focusInput = () => {
-      this.inputElement && this.inputElement.current.click()
-    }
+  focusInput = () => {
+    this.inputElement && this.inputElement.current.click()
   }
 
   componentDidUpdate(prevProps) {
