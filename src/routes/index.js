@@ -311,11 +311,11 @@ export const routes = [
     component: UsStockSellComplete,
     isAuthenticated: true
   },
-  {
-    path: '/account/us-stock/purchase',
-    component: UsStockPurchaseContainer,
-    isAuthenticated: true
-  },
+  // {
+  //   path: '/account/us-stock/purchase',
+  //   component: UsStockPurchaseContainer,
+  //   isAuthenticated: true
+  // },
   {
     path: '/account/us-stock/:code/purchase',
     component: UsStockPurchaseOrderContainer,

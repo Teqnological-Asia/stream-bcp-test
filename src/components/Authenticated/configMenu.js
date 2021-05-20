@@ -153,17 +153,17 @@ const configMenu = () => {
           ],
           groupId: 3
         },
-        {
-          id: 10,
-          name: "米国株式購入",
-          href: "/account/us-stock/purchase",
-          subItems: [
-            "/account/us-stock/:code/purchase",
-            "/account/us-stock/:code/purchase/confirm",
-            "/account/us-stock/:code/purchase/complete"
-          ],
-          groupId: 3
-        },
+        // {
+        //   id: 10,
+        //   name: "米国株式購入",
+        //   href: "/account/us-stock/purchase",
+        //   subItems: [
+        //     "/account/us-stock/:code/purchase",
+        //     "/account/us-stock/:code/purchase/confirm",
+        //     "/account/us-stock/:code/purchase/complete"
+        //   ],
+        //   groupId: 3
+        // },
         {
           id: 11,
           name: "信用建玉決済",
