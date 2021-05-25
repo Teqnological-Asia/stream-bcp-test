@@ -17,12 +17,13 @@ export function validateNumber(number) {
   return !isNaN(number) && number >= 0;
 }
 
-export function formatCurrency(number, maxFraction = 4) {
+export function formatCurrency(number, maxFraction = 2) {
   if (number != null) {
     const roundNumber = parseInt(parseFloat(number) * (10 ** maxFraction), 10) / (10 ** maxFraction)
     return roundNumber.toLocaleString('ja-JP', {
       maximumFractionDigits: maxFraction
     })
+
   }
 
   return '-';
@@ -63,7 +64,7 @@ export function isTokenExpired() {
   const jsonObj = JSON.parse(jsonStr);
   const expTime = jsonObj.exp;
   const curTime = new Date().getTime() / 1000;
-  
+
   return curTime > expTime;
 }
 

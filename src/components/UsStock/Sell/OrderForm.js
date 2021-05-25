@@ -127,7 +127,7 @@ class OrderForm extends Component {
   )
 
   formattedCommission = rate => (
-    rate && rate[0] && rate[0].commission ? formatCurrency(rate[0].commission.value) : '-'
+    rate && rate[0] && rate[0].exchangeRate ? formatCurrency((rate[0].exchangeRate.ask - rate[0].exchangeRate.bid)/2) : '-'
   )
 
   render() {
@@ -209,7 +209,7 @@ class OrderForm extends Component {
                               {this.formattedCommission(orderPrice)}
                             </span>
                             &nbsp;
-                            %
+                            円
                           </div>
                         </div>
                       </div>
@@ -218,7 +218,9 @@ class OrderForm extends Component {
                         <div>
                         ・取引参考価格は前日終値を基準として、参考為替レートを適用した価格になります。<br />
                         ・実際の取引価格は米国市場が開いた後に注文が速やかに発注され、約定した株の平均価格に対して <br />
-                        　当社の定める為替コスト反映後のレートを適用した価格になります。
+                        　当社の定める為替コスト反映後のレートを適用した価格になります。<br/>
+                          <a href="https://smartplus-sec.com/stream/service/products/us-stock/" target="_blank" >&ensp; 米国株式取引ルール</a>
+
                         </div>
 
                       </div>
