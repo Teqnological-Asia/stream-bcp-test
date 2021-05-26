@@ -17,7 +17,7 @@ export function validateNumber(number) {
   return !isNaN(number) && number >= 0;
 }
 
-export function formatCurrency(number, maxFraction = 2) {
+export function formatCurrency(number, maxFraction = 4) {
   if (number != null) {
     const roundNumber = parseInt(parseFloat(number) * (10 ** maxFraction), 10) / (10 ** maxFraction)
     return roundNumber.toLocaleString('ja-JP', {
