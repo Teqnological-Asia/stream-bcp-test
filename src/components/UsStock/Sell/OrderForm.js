@@ -115,7 +115,7 @@ class OrderForm extends Component {
   )
 
   formattedTransactionPrice = price => (
-    price && price[0] && price[0].estimatePrice ? formatCurrency(price[0].estimatePrice.bid) : '-'
+    price && price[0] && price[0].estimatePrice ? formatCurrency(price[0].estimatePrice.bid,0) : '-'
   )
 
   formattedUpdateTime = time => (
@@ -133,7 +133,6 @@ class OrderForm extends Component {
   render() {
     const { stockDetail, physicalDetail, orderPrice } = this.props;
     const { quantity, orderType, price } = this.state;
-
     if (stockDetail === null || physicalDetail === null) return null;
 
     return (
@@ -186,9 +185,9 @@ class OrderForm extends Component {
                           </div>
                         </div>
                         <div className="price-item">
-                          <p className="description" style={{textAlign: 'right'}}>
-                            最終更新：{this.formattedUpdateTime(orderPrice)}
-                          </p>
+                          {/*<p className="description" style={{textAlign: 'right'}}>*/}
+                          {/*  最終更新：{this.formattedUpdateTime(orderPrice)}*/}
+                          {/*</p>*/}
                         </div>
                       </div>
                       <div className="price-container">
