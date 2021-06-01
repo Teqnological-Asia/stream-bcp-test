@@ -1,7 +1,5 @@
 import {LOAD_ORDERS_SUCCESS, LOAD_ORDERS_US_SUCCESS} from '../constants/order';
 
-
-
 const initialState = {
   orders: [],
   currentPage: null,

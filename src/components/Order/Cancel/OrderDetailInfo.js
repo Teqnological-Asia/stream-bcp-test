@@ -9,7 +9,7 @@ const OrderDetailInfo = ({order}) => {
       <tbody>
         <tr>
           <th>銘柄コード</th>
-          <td>{order.stock_code}/{order.stock_name}</td>
+          <td>{order.stock_code || order.stockCode}</td>
         </tr>
         {/* <tr>
             <th>市場</th>
@@ -21,7 +21,7 @@ const OrderDetailInfo = ({order}) => {
         </tr>
         <tr>
           <th>取引株数</th>
-          <td>{order.order_quantity}株</td>
+          <td>{order.order_quantity || order.quantity}株</td>
         </tr>
         <tr>
           <th>執行条件・単価</th>

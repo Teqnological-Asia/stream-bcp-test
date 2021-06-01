@@ -33,10 +33,67 @@ export const loadOrdersRequest = (params) => {
       });
 
     return request.then((response) => {
-      const data = response.data.data;
-      dispatch(loadOrdersSuccess(data.orders, data.page, data.total_pages));
+      dispatch(loadSuccess(response.data.data.items));
       dispatch(setLoading(false))
     });
+  };
+
+}
+
+export const loadOrdersRequest = (params, tab = 1) => {
+  if (tab === 1) {
+    return dispatch => {
+      dispatch(setLoading(true))
+      const request = axios
+        .get(`${process.env.REACT_APP_BALANCE_API_HOST}/v3/orders`, {
+          params: params,
+          headers: getAuthHeader()
+        });
+
+      return request.then((response) => {
+        const data = response.data.data;
+        dispatch(loadOrdersSuccess(data.orders, data.page, data.total_pages));
+        dispatch(setLoading(false))
+      });
+    };
+  } else {
+    return dispatch => {
+      dispatch(setLoading(true))
+      const request = axios
+        .get(`${process.env.REACT_APP_BALANCE_API_HOST}/usStock/orders`, {
+          params: params,
+          headers: getAuthHeader()
+        });
+
+      return request.then((response) => {
+        const data = response.data.data;
+        dispatch(loadOrdersSuccess(data.items, data.page, data.totalPages));
+        dispatch(loadRequest(params, tab))
+        dispatch(setLoading(false))
+      });
+    };
+  }
+
+}
+
+
+export const orderCancelUs = (id) => {
+  const baseUrl = `https://baas-order-api-swagger.baas-dev.net/usStockOrders`
+  const headers = {
+    headers: getAuthHeader()
+  }
+  return dispatch => {
+    dispatch(setLoading(true))
+    const request = axios.post(
+      `${baseUrl}/${id}/cancel`,
+      {},
+      headers
+    );
+    return request.then((response) => {
+      const data = response.data.data
+      dispatch(orderOrderUsSuccess(data));
+      dispatch(setLoading(false))
+    })
   };
 }
 
