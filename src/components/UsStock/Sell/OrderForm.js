@@ -123,7 +123,7 @@ class OrderForm extends Component {
   )
 
   formattedExchangeRate = rate => (
-    rate && rate[0] && rate[0].exchangeRate ? formatCurrency(rate[0].exchangeRate.ask,2) : '-'
+    rate && rate[0] && rate[0].exchangeRate ? formatCurrency(rate[0].exchangeRate.bid,2) : '-'
   )
 
   formattedCommission = rate => (
