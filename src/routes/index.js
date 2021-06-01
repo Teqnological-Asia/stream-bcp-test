@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import AuthenticatedRoute from './AuthenticatedRoute';
 import UnauthenticatedRoute from './UnauthenticatedRoute';
-
 import HomeContainer from '../containers/Home/HomeContainer';
 import TradeHistoryContainer from '../containers/Trade/TradeHistoryContainer';
 import TradeTaxContainer from '../containers/Trade/TradeTaxContainer';
@@ -53,7 +52,7 @@ import TradeLendingHistory from '../containers/Trade/TradeLendingHistoryContaine
 import UsStockSellContainer from '../containers/UsStock/UsStockSellContainer'
 import UsStockSellConfirm from '../containers/UsStock/UsStockSellConfirmContainer'
 import UsStockSellComplete from '../containers/UsStock/UsStockSellCompleteContainer'
-import UsStockPurchaseContainer from '../containers/UsStock/UsStockPurchaseContainer'
+// import UsStockPurchaseContainer from '../containers/UsStock/UsStockPurchaseContainer'
 import UsStockPurchaseOrderContainer from '../containers/UsStock/UsStockPurchaseOrderContainer'
 import UsStockPurchaseOrderConfirmContainer from '../containers/UsStock/UsStockPurchaseOrderConfirmContainer'
 import UsStockPurchaseOrderComplete from '../containers/UsStock/UsStockPurchaseOrderComplete'

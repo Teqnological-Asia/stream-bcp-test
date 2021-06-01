@@ -241,7 +241,6 @@ export const createOrderRequest = (id) => {
                           headers: getAuthHeader(),
                         }
                       );
-
     return request.then((response) => {
       dispatch(push(`/account/us-stock/${id}/sell/complete`));
       dispatch(setLoading(false))

@@ -56,8 +56,8 @@ export const types = {
 
 export const reportTypes = ['fill', 'partial_fill'];
 
-export const formatTradeType = (order) => {
-  const tradeType = tradeTypes[order.trade_type];
+export const formatTradeType = (order, usStock = false) => {
+  const tradeType = tradeTypes[usStock ? 'equity' : order.trade_type];
   const suffix = suffixByTradeType(order.side, order.trade_type) + suffixForMarginType(order.trade_type)
   return `${tradeType}${suffix}`;
 }

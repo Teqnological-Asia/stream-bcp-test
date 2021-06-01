@@ -11,17 +11,34 @@ export const loadOrderDetailSuccess = (order, events) =>  {
   }
 }
 
-export const loadOrderDetailRequest = (id) => {
-  return dispatch => {
-    dispatch(setLoading(true))
-    const request = axios
-                      .get(`${process.env.REACT_APP_BALANCE_API_HOST}/orders/${id}`, {
-                        headers: getAuthHeader()
-                      });
-    return request.then((response) => {
-      const data = response.data.data;
-      dispatch(loadOrderDetailSuccess(data.order, data.events));
-      dispatch(setLoading(false))
-    });
-  };
+export const loadOrderDetailRequest = (id,params) => {
+  if (params===1){
+    return dispatch => {
+      dispatch(setLoading(true))
+      const request = axios
+          .get(`${process.env.REACT_APP_BALANCE_API_HOST}/orders/${id}`, {
+            headers: getAuthHeader()
+          });
+      return request.then((response) => {
+        const data = response.data.data;
+        dispatch(loadOrderDetailSuccess(data.order, data.events));
+        dispatch(setLoading(false))
+      });
+    };
+  }
+  else {
+    return dispatch => {
+      dispatch(setLoading(true))
+      const request = axios
+          .get(`${process.env.REACT_APP_BALANCE_API_HOST}/usStock/orders/${id}`, {
+            headers: getAuthHeader()
+          });
+      return request.then((response) => {
+        const data = response.data.data;
+        dispatch(loadOrderDetailSuccess(data, data.events));
+        dispatch(setLoading(false))
+      });
+    };
+  }
+
 }

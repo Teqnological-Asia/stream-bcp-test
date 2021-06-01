@@ -1,24 +1,41 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import OrderDetailInfo from './OrderDetailInfo';
+import OrderUsDetaiInfo from "./OrderUsDetaiInfo";
+
 
 class OrderCancel extends Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      params: 1,
+    };
     this.orderId = this.props.match.params.id;
   }
 
   componentDidMount() {
-    this.props.loadOrderDetailRequest(this.orderId);
+    const myParamName = new URL(window.location.href).searchParams.get('tab')
+    this.props.loadOrderDetailRequest(this.orderId, myParamName);
+    this.setState({params: myParamName})
+    const params = 1;
+    this.props.loadRequest(params)
+    this.props.orderCancelUs(this.orderId)
+
+
   }
 
   handleCancel = () => {
     const tradeType = this.props.order.trade_type
-    this.props.cancelOrderRequest(this.orderId, tradeType);
+    const myParamName = new URL(window.location.href).searchParams.get('tab')
+    myParamName === 1 ?
+      this.props.cancelOrderRequest(this.orderId, tradeType) : this.props.orderCancelUsRequest(this.orderId, this.props.request)
+
+
   }
 
   render() {
+    const showOrder = (this.state.params === 1 ? <OrderDetailInfo order={this.props.order}></OrderDetailInfo> :
+      <OrderUsDetaiInfo order={this.props.order} load={this.props.load}></OrderUsDetaiInfo>)
     return (
       <div className="l-contents_body_inner">
         <div className="u-mt40p">
@@ -33,7 +50,7 @@ class OrderCancel extends Component {
         </div>
         <div className="u-mt20p">
           <div className="c-table-responsive">
-            <OrderDetailInfo order={this.props.order}></OrderDetailInfo>
+            {showOrder}
           </div>
         </div>
         <div className="u-mt20p">
