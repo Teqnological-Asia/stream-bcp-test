@@ -1,24 +1,26 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import OrderDetailInfo from './OrderDetailInfo';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import OrderUsDetaiInfo from "./OrderUsDetaiInfo";
 
-class OrderCancel extends Component {
+class OrderUsCancel extends Component {
   constructor(props) {
     super(props);
-
     this.orderId = this.props.match.params.id;
+    this.country = this.props.match.params.order_us;
   }
 
   componentDidMount() {
-    this.props.loadOrderDetailRequest(this.orderId);
+    this.props.loadOrderUsDetailRequest(this.orderId)
+    this.props.orderCancelUs(this.orderId)
+    this.props.loadUsStocksRequest()
   }
 
   handleCancel = () => {
-    const tradeType = this.props.order.trade_type
-    this.props.cancelOrderRequest(this.orderId, tradeType);
+    this.props.orderCancelUsRequest(this.orderId, this.props.request)
   }
 
   render() {
+    const showOrder = <OrderUsDetaiInfo order={this.props.order} usStocks={this.props.usStocks.items}/>
     return (
       <div className="l-contents_body_inner">
         <div className="u-mt40p">
@@ -33,7 +35,7 @@ class OrderCancel extends Component {
         </div>
         <div className="u-mt20p">
           <div className="c-table-responsive">
-            <OrderDetailInfo order={this.props.order}></OrderDetailInfo>
+            {showOrder}
           </div>
         </div>
         <div className="u-mt20p">
@@ -45,4 +47,4 @@ class OrderCancel extends Component {
   }
 }
 
-export default OrderCancel;
+export default OrderUsCancel;

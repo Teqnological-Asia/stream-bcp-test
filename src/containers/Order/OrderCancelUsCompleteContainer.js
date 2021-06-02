@@ -1,4 +1,4 @@
 import { connect } from 'react-redux';
-import OrderCancelComplete from '../../components/Order/Cancel/Complete';
+import OrderUsCancelComplete from '../../components/Order/CancelUs/Complete';
 
-export default connect()(OrderCancelComplete);
+export default connect()(OrderUsCancelComplete);

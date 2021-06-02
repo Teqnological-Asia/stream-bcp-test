@@ -1,9 +1,9 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import OrderCancel from '../../components/Order/Cancel';
 import {loadOrderDetailRequest, loadOrderUsDetailRequest} from '../../actions/orderDetail';
 import {cancelOrderRequest, orderCancelUs, orderCancelUsRequest} from '../../actions/order';
 import {loadUsStocksRequest} from '../../actions/usStock';
+import OrderUsCancel from "../../components/Order/CancelUs";
 
 const mapStateToProps = (state) => {
   return {
@@ -24,4 +24,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OrderCancel);
+export default connect(mapStateToProps, mapDispatchToProps)(OrderUsCancel);
