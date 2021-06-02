@@ -33,52 +33,33 @@ export const loadOrdersRequest = (params) => {
       });
 
     return request.then((response) => {
-      dispatch(loadSuccess(response.data.data.items));
+      const data = response.data.data;
+      dispatch(loadOrdersSuccess(data.orders, data.page, data.total_pages));
       dispatch(setLoading(false))
     });
   };
-
 }
 
-export const loadOrdersRequest = (params, tab = 1) => {
-  if (tab === 1) {
-    return dispatch => {
-      dispatch(setLoading(true))
-      const request = axios
-        .get(`${process.env.REACT_APP_BALANCE_API_HOST}/v3/orders`, {
-          params: params,
-          headers: getAuthHeader()
-        });
-
-      return request.then((response) => {
-        const data = response.data.data;
-        dispatch(loadOrdersSuccess(data.orders, data.page, data.total_pages));
-        dispatch(setLoading(false))
+export const loadOrdersRequestUs = (params) => {
+  return dispatch => {
+    dispatch(setLoading(true))
+    const request = axios
+      .get(`${process.env.REACT_APP_BALANCE_API_HOST}/usStock/orders`, {
+        params: params,
+        headers: getAuthHeader()
       });
-    };
-  } else {
-    return dispatch => {
-      dispatch(setLoading(true))
-      const request = axios
-        .get(`${process.env.REACT_APP_BALANCE_API_HOST}/usStock/orders`, {
-          params: params,
-          headers: getAuthHeader()
-        });
 
-      return request.then((response) => {
-        const data = response.data.data;
-        dispatch(loadOrdersSuccess(data.items, data.page, data.totalPages));
-        dispatch(loadRequest(params, tab))
-        dispatch(setLoading(false))
-      });
-    };
-  }
-
+    return request.then((response) => {
+      const data = response.data.data;
+      dispatch(loadOrdersSuccess(data.items, data.page, data.totalPages));
+      dispatch(loadUsStocksRequest(params))
+      dispatch(setLoading(false))
+    });
+  };
 }
-
 
 export const orderCancelUs = (id) => {
-  const baseUrl = `https://baas-order-api-swagger.baas-dev.net/usStockOrders`
+  const baseUrl = `${process.env.REACT_APP_ORDER_API_HOST}/usStockOrders`
   const headers = {
     headers: getAuthHeader()
   }
