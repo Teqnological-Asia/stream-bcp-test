@@ -40,7 +40,9 @@ import UsStockContainer from '../containers/UsStock/UsStockContainer';
 import OrderContainer from '../containers/Order/OrderContainer';
 import OrderCancelContainer from '../containers/Order/OrderCancelContainer';
 import OrderCancelCompleteContainer from '../containers/Order/OrderCancelCompleteContainer';
+import OrderCancelUsCompleteContainer from '../containers/Order/OrderCancelCompleteContainer';
 import OrderDetailContainer from '../containers/Order/OrderDetailContainer';
+import OrderUsDetailContainer from '../containers/Order/OrderUsDetailContainer';
 import LoginContainer from '../containers/Login/LoginContainer';
 import LogoutContainer from '../containers/Logout/LogoutContainer';
 import ReminderContainer from '../containers/Reminder/ReminderContainer';
@@ -52,6 +54,7 @@ import TradeLendingHistory from '../containers/Trade/TradeLendingHistoryContaine
 import UsStockSellContainer from '../containers/UsStock/UsStockSellContainer'
 import UsStockSellConfirm from '../containers/UsStock/UsStockSellConfirmContainer'
 import UsStockSellComplete from '../containers/UsStock/UsStockSellCompleteContainer'
+import OrderCancelUsContainer from '../containers/Order/OrderCancelUsContainer';
 // import UsStockPurchaseContainer from '../containers/UsStock/UsStockPurchaseContainer'
 import UsStockPurchaseOrderContainer from '../containers/UsStock/UsStockPurchaseOrderContainer'
 import UsStockPurchaseOrderConfirmContainer from '../containers/UsStock/UsStockPurchaseOrderConfirmContainer'
@@ -256,13 +259,28 @@ export const routes = [
     isAuthenticated: true
   },
   {
+    path: '/account/:order_us/:id/cancel',
+    component: OrderCancelUsContainer,
+    isAuthenticated: true
+  },
+  {
     path: '/account/order/:id/cancel',
     component: OrderCancelContainer,
     isAuthenticated: true
   },
   {
+    path: '/account/:order_us/:id/cancel/complete',
+    component: OrderCancelUsCompleteContainer,
+    isAuthenticated: true
+  },
+  {
     path: '/account/order/:id/cancel/complete',
     component: OrderCancelCompleteContainer,
+    isAuthenticated: true
+  },
+  {
+    path: '/account/:order_us/:id/detail',
+    component: OrderUsDetailContainer,
     isAuthenticated: true
   },
   {

@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import UsStockPurchase from '../../components/UsStock/Purchase'
 import { loadUsStocksRequest, getIntradayInfo } from '../../actions/usStock';
 
+
 const mapStateToProps = (state) => {
   const { usStocks, intraday } = state.usStockReducer;
   return {

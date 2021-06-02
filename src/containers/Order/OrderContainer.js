@@ -1,24 +1,27 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Order from '../../components/Order';
-import {loadOrdersRequest} from '../../actions/order';
-import {loadRequest} from "../../actions/order";
+import {loadOrdersRequest, loadOrdersRequestUs} from '../../actions/order';
+import {loadUsStocksRequest} from "../../actions/usStock";
+
 
 const mapStateToProps = (state) => {
   const { orders, currentPage, totalPages,load} = state.orderReducer;
+  const {usStocks} = state.usStockReducer
   return {
     orders,
     currentPage,
     totalPages,
-    load
+    usStocks
   };
 };
 
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
+    loadOrdersRequestUs : loadOrdersRequestUs,
     loadOrdersRequest : loadOrdersRequest,
-    loadRequest : loadRequest
+    loadUsStocksRequest : loadUsStocksRequest
   }, dispatch);
 };
 

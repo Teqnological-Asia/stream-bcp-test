@@ -3,39 +3,30 @@ import {Link} from 'react-router-dom';
 import OrderDetailInfo from './OrderDetailInfo';
 import OrderUsDetaiInfo from "./OrderUsDetaiInfo";
 
-
 class OrderCancel extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      params: 1,
-    };
     this.orderId = this.props.match.params.id;
+    this.country = this.props.match.params.order_us;
   }
 
   componentDidMount() {
-    const myParamName = new URL(window.location.href).searchParams.get('tab')
-    this.props.loadOrderDetailRequest(this.orderId, myParamName);
-    this.setState({params: myParamName})
-    const params = 1;
-    this.props.loadRequest(params)
+    this.props.loadOrderUsDetailRequest(this.orderId);
     this.props.orderCancelUs(this.orderId)
-
-
+    this.props.loadUsStocksRequest()
   }
 
   handleCancel = () => {
+
     const tradeType = this.props.order.trade_type
-    const myParamName = new URL(window.location.href).searchParams.get('tab')
-    myParamName === 1 ?
-      this.props.cancelOrderRequest(this.orderId, tradeType) : this.props.orderCancelUsRequest(this.orderId, this.props.request)
-
-
+    this.country === "order_us" ? this.props.orderCancelUsRequest(this.orderId, this.props.request) :
+      this.props.cancelOrderRequest(this.orderId, tradeType)
   }
 
   render() {
-    const showOrder = (this.state.params === 1 ? <OrderDetailInfo order={this.props.order}></OrderDetailInfo> :
-      <OrderUsDetaiInfo order={this.props.order} load={this.props.load}></OrderUsDetaiInfo>)
+    const showOrder = (this.country === "order_us" ? <OrderUsDetaiInfo order={this.props.order} usStocks={this.props.usStocks.items}></OrderUsDetaiInfo>
+  :<OrderDetailInfo order={this.props.order}></OrderDetailInfo>)
+
     return (
       <div className="l-contents_body_inner">
         <div className="u-mt40p">

@@ -2,13 +2,13 @@ import React from "react";
 import OrderUsRow from "./OrderUsRow";
 import EmptyTableRow from "../Authenticated/EmptyTableRow";
 
-const OrderUsList = ({orders, tab, load}) => {
+const OrderUsList = ({orders,usStocks}) => {
   const renderOrders = (orders) => {
-    if (orders && load && orders.length > 0) {
+    if (orders && usStocks && orders.length > 0) {
       return orders.map((order, key) => {
-        const loadUs = load.find((item) => item.code === order.stockCode)
+        const loadUs = usStocks.find((item) => item.code === order.stockCode)
         return (
-          <OrderUsRow {...{order, key, loadUs, tab}} />
+          <OrderUsRow {...{order, key, loadUs}} />
         )
       })
         ;

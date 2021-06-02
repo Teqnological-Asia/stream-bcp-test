@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Pagination from '../Authenticated/Pagination';
 import OrderUsList from './OrderUsList';
+import OrderList from "./OrderList";
 import {formatDateTime} from '../../utils';
 
 class Order extends Component {
@@ -23,12 +24,12 @@ class Order extends Component {
 
   }
 
-
   loadOrders = (page = 1, tab) => {
     let params = {page: page, size: 10};
     let paramss = {page: page, size: 5};
-    this.props.loadOrdersRequest(params, tab);
-    this.props.loadRequest(paramss, tab);
+    tab === 1 ? this.props.loadOrdersRequest(params) : this.props.loadOrdersRequestUs(params)
+    this.props.loadUsStocksRequest()
+
   }
 
   handlePageChange = page => {
@@ -49,10 +50,11 @@ class Order extends Component {
   }
 
   render() {
-    const {orders, currentPage, totalPages, load} = this.props;
+    const {orders, currentPage, totalPages, usStocks} = this.props;
     const {tab} = this.state
     const showPagination = orders.length > 0;
-    const country = <OrderUsList orders={orders} tab={this.state.tab} load={load}/>
+    const country = tab === 1 ? <OrderList orders={orders}/> :
+      <OrderUsList orders={orders} usStocks={usStocks.items}/>
     const pagination = (
       showPagination &&
       <Pagination
@@ -63,7 +65,6 @@ class Order extends Component {
         onChange={this.handlePageChange}
       />
     )
-
 
     return (
       <div className="l-contents_body_inner">
@@ -86,12 +87,10 @@ class Order extends Component {
             </li>
           </ul>
         </div>
-
         <div className="u-mt20p">
           {country}
           {pagination}
         </div>
-
         <div className="u-mt40p">
           <div className="p-section_lead">
             <p>※当緊急時取引メニューは、現物株式の売却および信用建玉の返済の受付のみに限定させていただいております。上記「注文照会」に「現物買」
