@@ -11,7 +11,8 @@ class OrderCancel extends Component {
   }
 
   componentDidMount() {
-    this.props.loadOrderUsDetailRequest(this.orderId);
+    this.country === "order_us" ? this.props.loadOrderUsDetailRequest(this.orderId) :
+    this.props.loadOrderDetailRequest(this.orderId);
     this.props.orderCancelUs(this.orderId)
     this.props.loadUsStocksRequest()
   }
