@@ -55,7 +55,7 @@ const OrderUsRow = ({order, loadUs}) => {
       </td>
       <td data-name="取引数量">{formatCurrency(order.quantity, 0)}</td>
       <td className="c-l"
-          data-name="（出来済）">{order.filledQuantity != null ? formatCurrency(order.filledQuantity, 0) : 0}</td>
+          data-name="（出来済）">({order.filledQuantity != null ? formatCurrency(order.filledQuantity, 0) : 0})</td>
       <td className="c-l" data-name="取引状況">{renderStatusLink(order)}</td>
       <td className="c-l" data-name="取引条件">
         {formattedCondition}
