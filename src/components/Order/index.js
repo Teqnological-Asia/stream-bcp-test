@@ -26,7 +26,6 @@ class Order extends Component {
 
   loadOrders = (page = 1, tab) => {
     let params = {page: page, size: 10};
-    let paramss = {page: page, size: 5};
     tab === 1 ? this.props.loadOrdersRequest(params) : this.props.loadOrdersRequestUs(params)
     this.props.loadUsStocksRequest()
 

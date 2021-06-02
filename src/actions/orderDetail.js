@@ -2,7 +2,6 @@ import axios from 'axios';
 import {LOAD_ORDER_DETAIL_SUCCESS} from '../constants/orderDetail';
 import {getAuthHeader} from './auth';
 import {setLoading} from '../actions/loading';
-import {loadUsStocksRequest} from '../actions/usStock'
 
 export const loadOrderDetailSuccess = (order, events) => {
   return {
