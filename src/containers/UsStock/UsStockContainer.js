@@ -2,8 +2,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import UsStock from '../../components/UsStock';
 import { loadUsStockBalancesRequest, loadUsStocksRequest } from "../../actions/usStock";
-import Order from "../../components/Order";
-import OrderCancel from "../../components/Order/Cancel";
 
 
 const mapStateToProps = (state) => ({
