@@ -15,7 +15,7 @@ const OrderUsRow = ({order, loadUs}) => {
 
   const renderStatusLink = (order) => {
     return (
-      <span className="c-l">{statuses[order.status]} </span>
+      <span className="c-u">{statuses[order.status]} </span>
     );
   }
 
@@ -57,7 +57,7 @@ const OrderUsRow = ({order, loadUs}) => {
       <td className="c-l"
           data-name="（出来済）">({order.filledQuantity != null ? formatCurrency(order.filledQuantity, 0) : 0})</td>
       <td className="c-l" data-name="取引状況">{renderStatusLink(order)}</td>
-      <td className="c-l" data-name="取引条件">相対</td>
+      <td className="c-l c-l-center"  data-name="取引条件">相対</td>
       <td className="c-l" data-name="有効期限">当日中</td>
     </tr>
   );
