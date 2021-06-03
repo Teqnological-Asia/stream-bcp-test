@@ -15,7 +15,7 @@ const OrderInfo = ({stockDetail, orderSendParams, orderFormValues}) => {
               </tr>
               <tr>
                 <th>取引参考価格</th>
-                <td>{formatCurrency(orderFormValues.price)}円</td>
+                <td>{formatCurrency(orderFormValues.price, 0)}円</td>
               </tr>
               <tr>
                 <th>取引</th>
