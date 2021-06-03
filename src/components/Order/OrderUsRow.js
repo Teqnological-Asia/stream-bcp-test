@@ -15,7 +15,7 @@ const OrderUsRow = ({order, loadUs}) => {
 
   const renderStatusLink = (order) => {
     return (
-      <span className="c-u">{statuses[order.status]} </span>
+      <span className="c-l">{statuses[order.status]} </span>
     );
   }
 
