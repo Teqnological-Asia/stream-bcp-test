@@ -15,7 +15,7 @@ const OrderUsRow = ({order, loadUs}) => {
 
   const renderStatusLink = (order) => {
     return (
-      <Link className="c-u" to={`/account/order_us/${order.orderID}/detail`}>{statuses[order.status]}</Link>
+      <span className="c-u">{statuses[order.status]} </span>
     );
   }
 
