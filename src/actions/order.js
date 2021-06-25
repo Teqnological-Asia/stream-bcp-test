@@ -4,7 +4,6 @@ import {tradeTypeCancelPath} from '../components/Order/common';
 import {LOAD_ORDERS_SUCCESS, LOAD_ORDERS_US_SUCCESS} from '../constants/order';
 import {getAuthHeader} from './auth';
 import {setLoading} from '../actions/loading';
-import {loadUsStocksRequest} from '../actions/usStock'
 
 export const loadOrdersSuccess = (orders, currentPage, totalPages) => {
   return {

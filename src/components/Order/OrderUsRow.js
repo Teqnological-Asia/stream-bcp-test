@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {formatTime, formatDate, formatCurrency} from '../../utils';
-import {statuses, formatPrice, formatTradeType} from './common';
+import {statuses, formatTradeType} from './common';
 
 
 const OrderUsRow = ({order, loadUs}) => {
@@ -18,24 +18,6 @@ const OrderUsRow = ({order, loadUs}) => {
       <span className="c-l">{statuses[order.status]} </span>
     );
   }
-
-
-  const executionTypes = {
-    'none': '',
-    'on_open': '寄付',
-    'on_close': '引け',
-    'funari': '不成'
-  }
-
-  const formatCondition = (order) => {
-    if (order.order_condition_type === 'stop') {
-      const suffix = order.stop_condition === 'upper' ? '以上' : '以下';
-      return `${order.stop_price}円${suffix}`;
-    } else {
-      return executionTypes[order.execution_type];
-    }
-  }
-  const formattedCondition = formatCondition(order);
 
   return (
     <tr>
