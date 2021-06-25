@@ -22,13 +22,16 @@ class Order extends Component {
   componentDidMount() {
     this.loadOrders(1, 1);
 
+    // Call only 1 times instead of everytime change page
+    this.props.loadUsStocksRequest()
   }
 
   loadOrders = (page = 1, tab) => {
+    if (tab !== this.state.tab) { //Reset orders state first when change tab
+      this.props.loadOrdersSuccess([], null, null)
+    }
     let params = {page: page, size: 10};
     tab === 1 ? this.props.loadOrdersRequest(params) : this.props.loadOrdersRequestUs(params)
-    this.props.loadUsStocksRequest()
-
   }
 
   handlePageChange = page => {
@@ -52,6 +55,7 @@ class Order extends Component {
     const {orders, currentPage, totalPages, usStocks} = this.props;
     const {tab} = this.state
     const showPagination = orders.length > 0;
+    console.log(orders)
     const country = tab === 1 ? <OrderList orders={orders}/> :
       <OrderUsList orders={orders} usStocks={usStocks.items}/>
     const pagination = (

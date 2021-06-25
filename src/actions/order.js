@@ -52,7 +52,6 @@ export const loadOrdersRequestUs = (params) => {
     return request.then((response) => {
       const data = response.data.data;
       dispatch(loadOrdersSuccess(data.items, data.page, data.totalPages));
-      dispatch(loadUsStocksRequest(params))
       dispatch(setLoading(false))
     });
   };
