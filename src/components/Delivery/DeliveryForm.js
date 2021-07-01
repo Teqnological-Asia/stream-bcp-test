@@ -1,11 +1,11 @@
 import React from 'react';
-import Flatpickr from 'react-flatpickr';
+// import Flatpickr from 'react-flatpickr';
 
 const DeliveryForm = ({handleUserInput, validateAccountId, isDateEnable, isDateControlDisable, isASelected, isBSelected}) => {
   return (
     <table className="c-table_d">
       <tbody>
-        <tr>
+        {/* <tr>
           <th className="c-w25">振替指示日</th>
           <td className="c-l">
             <div className={isASelected} id="ptn_block_A">
@@ -27,7 +27,7 @@ const DeliveryForm = ({handleUserInput, validateAccountId, isDateEnable, isDateC
               </div><span className="p-subtext">※5営業日目以降の日にちをご入力ください（指定日通りに振替できないことがあります）</span>
             </div>
           </td>
-        </tr>
+        </tr> */}
         <tr>
           <th>移管先口座管理機関コード</th>
           <td className="c-l">
