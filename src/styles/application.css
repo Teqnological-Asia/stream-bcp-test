@@ -1307,7 +1307,7 @@ table.c-table {
     font-weight: 400;
     color: #404040;
     border: none;
-    width: 100%; } 
+    width: 100%; }
     table.c-table_dt tbody tr {
       background-color: #e2e4eb; }
       table.c-table_dt tbody tr.c-disable {
@@ -1489,6 +1489,9 @@ table.c-table_confirm {
 .c-l {
   text-align: left !important; }
 
+.c-l-center{
+  text-align: center !important;
+}
 .c-c {
   text-align: center !important; }
 

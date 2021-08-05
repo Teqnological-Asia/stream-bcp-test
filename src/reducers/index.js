@@ -11,6 +11,7 @@ import notificationReducer from './notificationDetail';
 import balanceReducer from './balance';
 import orderReducer from './order';
 import orderDetailReducer from './orderDetail';
+import usStockReducer from './usStock';
 import physicalReducer from './physical';
 import paymentReducer from './payment';
 import paymentHistoryReducer from './paymentHistory';
@@ -38,6 +39,7 @@ export default combineReducers({
   orderReducer,
   orderDetailReducer,
   physicalReducer,
+  usStockReducer,
   paymentReducer,
   paymentHistoryReducer,
   paymentCancelReducer,

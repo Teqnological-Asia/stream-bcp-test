@@ -23,6 +23,7 @@ export function formatCurrency(number, maxFraction = 4) {
     return roundNumber.toLocaleString('ja-JP', {
       maximumFractionDigits: maxFraction
     })
+
   }
 
   return '-';
@@ -63,7 +64,7 @@ export function isTokenExpired() {
   const jsonObj = JSON.parse(jsonStr);
   const expTime = jsonObj.exp;
   const curTime = new Date().getTime() / 1000;
-  
+
   return curTime > expTime;
 }
 

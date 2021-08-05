@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import AuthenticatedRoute from './AuthenticatedRoute';
 import UnauthenticatedRoute from './UnauthenticatedRoute';
-
 import HomeContainer from '../containers/Home/HomeContainer';
 import TradeHistoryContainer from '../containers/Trade/TradeHistoryContainer';
 import TradeTaxContainer from '../containers/Trade/TradeTaxContainer';
@@ -37,10 +36,13 @@ import MarginReceiptContainer from '../containers/Margin/MarginReceiptContainer'
 import MarginReceiptCompleteContainer from '../containers/Margin/MarginReceiptCompleteContainer';
 import MarginDeliveryContainer from '../containers/Margin/MarginDeliveryContainer';
 import MarginDeliveryCompleteContainer from '../containers/Margin/MarginDeliveryCompleteContainer';
+import UsStockContainer from '../containers/UsStock/UsStockContainer';
 import OrderContainer from '../containers/Order/OrderContainer';
 import OrderCancelContainer from '../containers/Order/OrderCancelContainer';
 import OrderCancelCompleteContainer from '../containers/Order/OrderCancelCompleteContainer';
+import OrderCancelUsCompleteContainer from '../containers/Order/OrderCancelCompleteContainer';
 import OrderDetailContainer from '../containers/Order/OrderDetailContainer';
+import OrderUsDetailContainer from '../containers/Order/OrderUsDetailContainer';
 import LoginContainer from '../containers/Login/LoginContainer';
 import LogoutContainer from '../containers/Logout/LogoutContainer';
 import ReminderContainer from '../containers/Reminder/ReminderContainer';
@@ -49,6 +51,14 @@ import LoadingContainer from '../containers/Loading/LoadingContainer';
 import CloseAccountContainer from '../containers/CloseAccount/CloseAccountContainer';
 import LendingBalanceContainer from '../containers/Trade/TradeLendingBalanceContainer'
 import TradeLendingHistory from '../containers/Trade/TradeLendingHistoryContainer';
+import UsStockSellContainer from '../containers/UsStock/UsStockSellContainer'
+import UsStockSellConfirm from '../containers/UsStock/UsStockSellConfirmContainer'
+import UsStockSellComplete from '../containers/UsStock/UsStockSellCompleteContainer'
+import OrderCancelUsContainer from '../containers/Order/OrderCancelUsContainer';
+// import UsStockPurchaseContainer from '../containers/UsStock/UsStockPurchaseContainer'
+import UsStockPurchaseOrderContainer from '../containers/UsStock/UsStockPurchaseOrderContainer'
+import UsStockPurchaseOrderConfirmContainer from '../containers/UsStock/UsStockPurchaseOrderConfirmContainer'
+import UsStockPurchaseOrderComplete from '../containers/UsStock/UsStockPurchaseOrderComplete'
 // import TradeTransitionReferenceContainer from '../containers/Trade/TradeTransitionReferenceContainer';
 import { AppHelmet } from '../components/Helmet';
 
@@ -239,8 +249,18 @@ export const routes = [
     isAuthenticated: true
   },
   {
+    path: '/account/us-stock',
+    component: UsStockContainer,
+    isAuthenticated: true
+  },
+  {
     path: '/account/order',
     component: OrderContainer,
+    isAuthenticated: true
+  },
+  {
+    path: '/account/:order_us/:id/cancel',
+    component: OrderCancelUsContainer,
     isAuthenticated: true
   },
   {
@@ -249,8 +269,18 @@ export const routes = [
     isAuthenticated: true
   },
   {
+    path: '/account/:order_us/:id/cancel/complete',
+    component: OrderCancelUsCompleteContainer,
+    isAuthenticated: true
+  },
+  {
     path: '/account/order/:id/cancel/complete',
     component: OrderCancelCompleteContainer,
+    isAuthenticated: true
+  },
+  {
+    path: '/account/:order_us/:id/detail',
+    component: OrderUsDetailContainer,
     isAuthenticated: true
   },
   {
@@ -283,6 +313,41 @@ export const routes = [
     component: ReminderCompleteContainer,
     isAuthenticated: false
   },
+  {
+    path: '/account/us-stock/:code/sell',
+    component: UsStockSellContainer,
+    isAuthenticated: true
+  },
+  {
+    path: '/account/us-stock/:code/sell/confirm',
+    component: UsStockSellConfirm,
+    isAuthenticated: true
+  },
+  {
+    path: '/account/us-stock/:code/sell/complete',
+    component: UsStockSellComplete,
+    isAuthenticated: true
+  },
+  // {
+  //   path: '/account/us-stock/purchase',
+  //   component: UsStockPurchaseContainer,
+  //   isAuthenticated: true
+  // },
+  {
+    path: '/account/us-stock/:code/purchase',
+    component: UsStockPurchaseOrderContainer,
+    isAuthenticated: true
+  },
+  {
+    path: '/account/us-stock/:code/purchase/confirm',
+    component: UsStockPurchaseOrderConfirmContainer,
+    isAuthenticated: true
+  },
+  {
+    path: '/account/us-stock/:code/purchase/complete',
+    component: UsStockPurchaseOrderComplete,
+    isAuthenticated: true
+  }
 ];
 
 export default function configRoutes() {

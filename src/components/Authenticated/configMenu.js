@@ -144,7 +144,7 @@ const configMenu = () => {
       items: [
         {
           id: 9,
-          name: "現物株式売却",
+          name: "国内株式売却",
           href: "/account/physical",
           subItems: [
             "/account/physical/:code/order",
@@ -153,8 +153,19 @@ const configMenu = () => {
           ],
           groupId: 3
         },
+        // {
+        //   id: 10,
+        //   name: "米国株式購入",
+        //   href: "/account/us-stock/purchase",
+        //   subItems: [
+        //     "/account/us-stock/:code/purchase",
+        //     "/account/us-stock/:code/purchase/confirm",
+        //     "/account/us-stock/:code/purchase/complete"
+        //   ],
+        //   groupId: 3
+        // },
         {
-          id: 10,
+          id: 11,
           name: "信用建玉決済",
           href: "/account/margin",
           subItems: [
@@ -170,7 +181,18 @@ const configMenu = () => {
           groupId: 3
         },
         {
-          id: 11,
+          id: 12,
+          name: "米国株式売却",
+          href: "/account/us-stock",
+          subItems: [
+            "/account/us-stock/:code/sell",
+            "/account/us-stock/:code/sell/confirm",
+            "/account/us-stock/:code/sell/complete"
+          ],
+          groupId: 3
+        },
+        {
+          id: 13,
           name: "注文照会",
           href: "/account/order",
           subItems: [
@@ -178,7 +200,7 @@ const configMenu = () => {
             "/account/order/:id/cancel/complete",
             "/account/order/:id/detail"
           ],
-          groupId: 3
+          groupId: 4
         }
       ]
     }
