@@ -4,6 +4,7 @@ import {tradeTypeCancelPath} from '../components/Order/common';
 import {LOAD_ORDERS_SUCCESS, LOAD_ORDERS_US_SUCCESS} from '../constants/order';
 import {getAuthHeader} from './auth';
 import {setLoading} from '../actions/loading';
+import { loadUsStocksRequest } from '../actions/usStock';
 
 export const loadOrdersSuccess = (orders, currentPage, totalPages) => {
   return {
@@ -36,43 +37,6 @@ export const loadOrdersRequest = (params) => {
       dispatch(loadOrdersSuccess(data.orders, data.page, data.total_pages));
       dispatch(setLoading(false))
     });
-  };
-}
-
-export const loadOrdersRequestUs = (params) => {
-  return dispatch => {
-    dispatch(setLoading(true))
-    const request = axios
-      .get(`${process.env.REACT_APP_BALANCE_API_HOST}/usStock/orders`, {
-        params: params,
-        headers: getAuthHeader()
-      });
-
-    return request.then((response) => {
-      const data = response.data.data;
-      dispatch(loadOrdersSuccess(data.items, data.page, data.totalPages));
-      dispatch(setLoading(false))
-    });
-  };
-}
-
-export const orderCancelUs = (id) => {
-  const baseUrl = `${process.env.REACT_APP_ORDER_API_HOST}/usStockOrders`
-  const headers = {
-    headers: getAuthHeader()
-  }
-  return dispatch => {
-    dispatch(setLoading(true))
-    const request = axios.post(
-      `${baseUrl}/${id}/cancel`,
-      {},
-      headers
-    );
-    return request.then((response) => {
-      const data = response.data.data
-      dispatch(orderOrderUsSuccess(data));
-      dispatch(setLoading(false))
-    })
   };
 }
 
