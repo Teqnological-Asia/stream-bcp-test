@@ -259,7 +259,7 @@ export const routes = [
     isAuthenticated: true
   },
   {
-    path: '/account/:order_us/:id/cancel',
+    path: '/account/order_us/:id/cancel',
     component: OrderCancelUsContainer,
     isAuthenticated: true
   },
@@ -269,7 +269,7 @@ export const routes = [
     isAuthenticated: true
   },
   {
-    path: '/account/:order_us/:id/cancel/complete',
+    path: '/account/order_us/:id/cancel/complete',
     component: OrderCancelUsCompleteContainer,
     isAuthenticated: true
   },
@@ -279,7 +279,7 @@ export const routes = [
     isAuthenticated: true
   },
   {
-    path: '/account/:order_us/:id/detail',
+    path: '/account/order_us/:id/detail',
     component: OrderUsDetailContainer,
     isAuthenticated: true
   },
