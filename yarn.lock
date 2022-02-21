@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@Finatext/baas-common-bcp@1.0.0-alpha.19":
-  version "1.0.0-alpha.19"
-  resolved "https://npm.pkg.github.com/download/@Finatext/baas-common-bcp/1.0.0-alpha.19/801e9100894d2c76e080f34b68c552f8e78a5558b92ca6879ccecbce8e9dce72#95cdfe9a6faf281d368698d85c6850651f1210f4"
-  integrity sha512-yQwskoYjMtARGPuTYJcbtwvdnZZxBXQY+GgMA1z8tJpItUG94z5k1xpY7WPhexFL0GWoZddKuFDnHA+/aytoUg==
+"@Finatext/baas-common-bcp@1.0.0-alpha.32":
+  version "1.0.0-alpha.32"
+  resolved "https://npm.pkg.github.com/download/@Finatext/baas-common-bcp/1.0.0-alpha.32/17d266efe1144819ed032a06bb5a96a242d05eaccc538518e1df0986e796f68e#9dd6ecdbdb913c2385b6197d5654207f223ce8c4"
+  integrity sha512-93f7rIoT23FzHooEdqE7Ae2Bm1elVWCAm98/XnPT3lFgl5xTPzmzXZ/LAtDN/EMcOB5AXRRsDsE7pRYe/WIzhg==
   dependencies:
     "@testing-library/jest-dom" "^5.11.4"
     "@testing-library/react" "^11.1.0"
@@ -7530,7 +7530,7 @@ file-loader@6.1.1:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
-"file-saver@github:eligrey/FileSaver.js#1.3.8":
+file-saver@eligrey/FileSaver.js#1.3.8:
   version "1.3.8"
   resolved "https://codeload.github.com/eligrey/FileSaver.js/tar.gz/e865e37af9f9947ddcced76b549e27dc45c1cb2e"
 
