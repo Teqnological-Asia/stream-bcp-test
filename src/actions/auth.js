@@ -13,8 +13,9 @@ import {
 import {
   getToken
 } from '../utils';
-import { setLoading } from '../actions/loading'
-import {loadStockLendingStatus} from "./profile";
+import { setLoading } from './loading'
+import {loadAccountsInfoRequest} from "./profile";
+import Amplify from "./amplify";
 
 export const getAuthHeader = () => {
   return {
@@ -56,30 +57,35 @@ export const setAntiSocial = (isAntiSocial) => {
   }
 }
 
-export const loginRequest = (email, password) => {
+export const loginRequest = (authz_code, user_id) => {
   return dispatch => {
     dispatch(setLoading(true))
-    const params = qs.stringify({
-      email,
-      password
+    const amplify = new Amplify({
+      authzCode: authz_code,
+      baasId: user_id,
     });
-    const loginRequest = axios.post(`${process.env.REACT_APP_COGNITO_LOGIN_API_HOST}/signin`, params);
-
-    return loginRequest
-      .then((response) => {
-        const token = response.data.data.token;
-        sessionStorage.setItem('token', token);
-        sessionStorage.setItem('is_unconfirmed', true);
-        dispatch(accountStatusRequest())
+    return amplify.login()
+      .then((result) => {
+        const session = result.getSignInUserSession();
+        if (session) {
+          const authToken = session.getAccessToken().getJwtToken()
+          sessionStorage.setItem('token', authToken)
+          sessionStorage.setItem('is_unconfirmed', 'true')
+          dispatch(accountStatusRequest())
+        } else {
+          dispatch(setLoading(false))
+          dispatch(push('/account/login'))
+        }
       })
       .catch(error => {
         let errorMessage = '';
         if (error.response) {
-          errorMessage = error.response.data.message;
+          errorMessage = error.response.data.message
         }
-        dispatch(loginFailure(errorMessage));
+        dispatch(loginFailure(errorMessage))
         dispatch(setLoading(false))
-      });
+        dispatch(push('/account/login'))
+      })
   };
 }
 
@@ -127,11 +133,11 @@ const accountStatusRequest = () => ( dispatch => {
 
 const profileRequest = () => {
   return dispatch => {
-    dispatch(loadStockLendingStatus());
+    // dispatch(loadStockLendingStatus());
     const profileRequest = axios
-    .get(`${process.env.REACT_APP_USER_INFORMATION_API_HOST}/profile`, {
-      headers: getAuthHeader()
-    });
+      .get(`${process.env.REACT_APP_USER_INFORMATION_API_HOST}/profile`, {
+        headers: getAuthHeader()
+      });
     return profileRequest
       .then((response) => {
         const name = response.data.data.profile.name_kanji;
@@ -139,6 +145,7 @@ const profileRequest = () => {
         sessionStorage.setItem('name', name);
         sessionStorage.setItem('marginAccountStatus', marginAccountStatus);
         dispatch(loginSuccess());
+        dispatch(loadAccountsInfoRequest(true))
         const redirect = sessionStorage.getItem('redirectUrl') || '/account';
         setTimeout(() => { //Delay redirect to update stock lending status
           dispatch(push(redirect));
