@@ -59,6 +59,7 @@ import OrderCancelUsContainer from '../containers/Order/OrderCancelUsContainer';
 import UsStockPurchaseOrderContainer from '../containers/UsStock/UsStockPurchaseOrderContainer'
 import UsStockPurchaseOrderConfirmContainer from '../containers/UsStock/UsStockPurchaseOrderConfirmContainer'
 import UsStockPurchaseOrderComplete from '../containers/UsStock/UsStockPurchaseOrderComplete'
+import LoginCallbackContainer from '../containers/Login/LoginCallbackContainer';
 // import TradeTransitionReferenceContainer from '../containers/Trade/TradeTransitionReferenceContainer';
 import { AppHelmet } from '../components/Helmet';
 
@@ -98,6 +99,11 @@ export const routes = [
   //   component: TradeTransitionReferenceContainer,
   //   isAuthenticated: true
   // },
+  {
+    path: '/account/login/callback',
+    component: LoginCallbackContainer,
+    isAuthenticated: false
+  },
   {
     path: '/account/payment/history',
     component: PaymentHistoryContainer,
@@ -363,7 +369,7 @@ export default function configRoutes() {
     if (document.referrer) {
       sessionStorage.setItem('prevPath', document.referrer)
     }
-    sessionStorage.setItem('path', props.location.pathname)
+    sessionStorage.setItem('path', props.location.pathname + props.location.search)
     window.location.href = '/op/index.html'
     return null
   }
